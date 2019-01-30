@@ -1,7 +1,6 @@
 <?php
+$ver="v20190129";
 /* List all SWF files in subfolders
-ver 2019024
-
 
 
 To Do : remove HARD CODED str_replace
@@ -34,7 +33,7 @@ if($_REQUEST) {
 
 			$div_hide_on_init=$div_hide_on_init.'document.getElementById("div'.$counter.'").style.visibility = "hidden";'."\n";
 
-			$setTimeout_div_text=$setTimeout_div_text.'setTimeout(function(){document.getElementById("div'.$counter.'").style.visibility = "visible"}, '.$time_multiplier.'*minute);'."\n";
+			$setTimeout_div_text=$setTimeout_div_text.'setTimeout(function(){document.getElementById("div'.$counter.'").style.visibility = "visible"}, '.$time_multiplier.'*minute+additional_wait_minutes);'."\n";
 
 
 		}
@@ -55,10 +54,22 @@ if($_REQUEST) {
 <script type="text/javascript">
    	var first_click=true;
    	var url_time_param=location.search.substring(1).indexOf("time");
+   	var additional_wait_time=0;
+   	var url_timer4=location.search.substring(1).indexOf("timer4");
+   	var url_timer5=location.search.substring(1).indexOf("timer5");
+   	var url_timer6=location.search.substring(1).indexOf("timer6");
+
+   	if (url_timer4!==-1)additional_wait_time= -1;
+   	if (url_timer5!==-1)additional_wait_time= 0;
+   	if (url_timer6!==-1)additional_wait_time= 1;
+   	if (url_timer7!==-1)additional_wait_time= 2;
+   	var additional_wait_minutes=additional_wait_time*1000*60;
+
 </script>
 
 </head>
 <body  onload="init_links()">
+<!--'.$ver.' -->
 <TABLE BORDER="2" CELLPADDING="2" CELLSPACING="2"  style="table-layout: fixed;" WIDTH="100%" height=100%>
 <tbody><tr style="vertical-align:top" valign="top">
 <td style="width: 120px;word-wrap:break-word;" valign="top">
@@ -107,18 +118,14 @@ function showItTimer() {
 	
 		//if(location.search.substring(1)>0)  alert("location.search.substring(1)="+location.search.substring(1));
 	    var minute=1000*60;
+	    	//############ TEST ###################
           	setTimeout(function(){document.getElementById("div2").style.visibility = "visible"}, 2000);//test
           	setTimeout(function(){document.getElementById("div2").style.visibility = "hidden"}, 5000);//test
 
           	setTimeout(function(){document.getElementById("div4").style.visibility = "visible"}, minute/60);//test
           	setTimeout(function(){document.getElementById("div4").style.visibility = "hidden"}, 3000);//test
+          	// ########### TEST #####################
 '.$setTimeout_div_text.'
-	   /* setTimeout(function(){document.getElementById("div2").style.visibility = "visible"}, 5*minute);
-		setTimeout(function(){document.getElementById("div3").style.visibility = "visible"}, 10*minute);
-		setTimeout(function(){document.getElementById("div4").style.visibility = "visible"}, 15*minute);
-		setTimeout(function(){document.getElementById("div5").style.visibility = "visible"}, 20*minute);
-		//setTimeout(function(){document.getElementById("div6").style.visibility = "visible"}, 20*minute);
-		*/
 		
 	}
 	first_click=false;
