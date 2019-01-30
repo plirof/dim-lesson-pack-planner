@@ -1,5 +1,5 @@
 <?php
-$ver="v20190129";
+$ver="v20190129b";
 /* List all SWF files in subfolders
 
 
@@ -54,16 +54,23 @@ if($_REQUEST) {
 <script type="text/javascript">
    	var first_click=true;
    	var url_time_param=location.search.substring(1).indexOf("time");
+   	// (((((((((((((((((((  preset timers (((((((((((((((((((
    	var additional_wait_time=0;
+   	var url_timer2=location.search.substring(1).indexOf("timer2");
+   	var url_timer3=location.search.substring(1).indexOf("timer3");
    	var url_timer4=location.search.substring(1).indexOf("timer4");
    	var url_timer5=location.search.substring(1).indexOf("timer5");
    	var url_timer6=location.search.substring(1).indexOf("timer6");
+   	var url_timer7=location.search.substring(1).indexOf("timer7");
 
+   	if (url_timer2!==-1)additional_wait_time= -3;
+   	if (url_timer3!==-1)additional_wait_time= -2;
    	if (url_timer4!==-1)additional_wait_time= -1;
    	if (url_timer5!==-1)additional_wait_time= 0;
    	if (url_timer6!==-1)additional_wait_time= 1;
    	if (url_timer7!==-1)additional_wait_time= 2;
    	var additional_wait_minutes=additional_wait_time*1000*60;
+   	// ))))))))))))))))  preset timers )))))))))))))))))))))))
 
 </script>
 
@@ -114,10 +121,12 @@ function showItTimer() {
 
 	if(first_click && url_time_param !==-1 ) {
 		//alert("first_timer=true   , "+"location.search.substring(1)="+location.search.substring(1));
-		console.log("first click");
+		
 	
 		//if(location.search.substring(1)>0)  alert("location.search.substring(1)="+location.search.substring(1));
 	    var minute=1000*60;
+	    console.log("first click , timers set every :");
+	    console.log((5*minute + additional_wait_minutes)/60/1000);
 	    	//############ TEST ###################
           	setTimeout(function(){document.getElementById("div2").style.visibility = "visible"}, 2000);//test
           	setTimeout(function(){document.getElementById("div2").style.visibility = "hidden"}, 5000);//test
