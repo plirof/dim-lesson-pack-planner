@@ -29,7 +29,7 @@ if($_REQUEST) {
 
 		if($counter==1) $line_to_add="\n".'<div id="div1" onClick="showItTimer(); return true;" > '."\n".'<a href="'.$value.'"  target="sideframe1">'.$key.'</a>'."\n".'</div>';
 		if($counter>1) {
-			$line_to_add='<div id="div'.$counter.'" >'."\n".'<a href="'.$value.'" target="sideframe1">'.$key.'</a>'."\n".'</div>';
+			$line_to_add='<div id="div'.$counter.'" >'."\n".'<li><a href="'.$value.'" target="sideframe1">'.$key.'</a></li>'."\n".'</div>';
 
 			$div_hide_on_init=$div_hide_on_init.'document.getElementById("div'.$counter.'").style.visibility = "hidden";'."\n";
 
@@ -41,7 +41,7 @@ if($_REQUEST) {
 		//$line_to_add='<a href="'.$value.'" target="sideframe1">'.$key.'</a>' ;
 
 		if($key=='Submit'||$value=='Submit') continue;
-		   $li_list=$li_list. '<li>'.$line_to_add.'</li>'."\n";
+		   $li_list=$li_list. ''.$line_to_add.''."\n";
 		$counter++;
 		$time_multiplier=$time_multiplier+$time_multiplier_increment;
 		if($time_multiplier>25)$time_multiplier=25;
