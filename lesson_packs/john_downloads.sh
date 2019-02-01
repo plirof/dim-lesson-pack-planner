@@ -41,8 +41,9 @@ file_rename_old "zzz_desktop_root_dim_v04f_190116oookids.squashfs"
 file_rename_old "zzz_desktop_root_dim_v04a_190116oookids.squashfs"
 
 
-#190118 new askiseisdocs_desktop_v02a_181104.squashfs"
-file_fetch "askiseis_office_htdocs_desktop_v02c_190119.squashfs"
+#190118 new ASKISEIS askiseisdocs_desktop_v02a_181104.squashfs"
+file_fetch "askiseis_office_htdocs_desktop_v02d_190131.squashfs"
+file_rename_old "askiseis_office_htdocs_desktop_v02c_190119.squashfs"
 file_rename_old "askiseis_office_htdocs_desktop_v02b_190119.squashfs"
 file_rename_old "askiseis_office_htdocs_desktop_v02a_181104.squashfs"
 
