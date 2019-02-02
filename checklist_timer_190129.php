@@ -1,5 +1,5 @@
 <?php
-$ver="v20190202a";
+$ver="v20190129b";
 /* List all SWF files in subfolders
 
 
@@ -27,7 +27,7 @@ if($_REQUEST) {
 	       // $_REQUEST[$key] = $this->_db->realEscapeString($value);
 
 
-		if($counter==1) $line_to_add="\n".'<div id="div1" onClick="showItTimer(); return true;" > '."\n".'<li><a href="'.$value.'"  target="sideframe1">'.$key.'</a></li>'."\n".'</div>';
+		if($counter==1) $line_to_add="\n".'<div id="div1" onClick="showItTimer(); return true;" > '."\n".'<a href="'.$value.'"  target="sideframe1">'.$key.'</a>'."\n".'</div>';
 		if($counter>1) {
 			$line_to_add='<div id="div'.$counter.'" >'."\n".'<li><a href="'.$value.'" target="sideframe1">'.$key.'</a></li>'."\n".'</div>';
 
@@ -178,15 +178,14 @@ function showItTimer() {
 	    //if($debug) echo "<h3>SCANDIR ".$dir."</h3>";
 	    $sub_dir = str_replace($dir_starting, ".", $dir);
 	    //if($debug) echo "<h3>SCANDIR ".$sub_dir."</h3>";
-	    $count_files=0;
+	    
 		echo '<ol>';
 	    foreach($ffs as $ff){
 	        if($ff != '.' && $ff != '..'){
 	            //echo '<li>'.$ff;
-	            $count_files++;
 	            if(strpos($ff,$file_extension) ) { //if we have an .swf file
 	            	//echo  '<input type="checkbox" name="$ff" value="'.$sub_dir.'/'.$ff.'" />   ';
-					echo "<hr><li>".'<input type="checkbox" name="'.$ff.$count_files.'" value="'.$sub_dir.'/'.$ff.'" />   '." <a href=".$sub_dir.'/'.$ff." target='_blank' > $ff</a> "; //file  ORIG line
+					echo "<hr><li>".'<input type="checkbox" name="'.$ff.'" value="'.$sub_dir.'/'.$ff.'" />   '." <a href=".$sub_dir.'/'.$ff." target='_blank' > $ff</a> "; //file  ORIG line
 	//				echo "<hr><li><a href=opengame.php?file=".$sub_dir.'/'.$ff." target='_blank' >$ff</a> " .$average_rating; //file
 				}
 				
