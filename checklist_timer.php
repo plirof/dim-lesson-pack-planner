@@ -159,7 +159,7 @@ function showItTimer() {
 	$show_rating=false;
 	$file_extension='.swf'; //TODO to implement this variable
 	$submit_button='<input type="submit" name="formSubmit" value="Submit" />';
-
+	$count_files=0;
 
 	//$dir_starting ='/opt/lampp/htdocs/mocha181212swf_only/';
 	$dir_starting ='.';
@@ -173,12 +173,12 @@ function showItTimer() {
 
 	function listFolderFiles($dir){
 	global $dir_starting,$debug;
-	global $submit_button,$show_rating,$dir_rating,$file_extension;
+	global $submit_button,$show_rating,$dir_rating,$file_extension,$count_files;
 	    $ffs = scandir($dir);
 	    //if($debug) echo "<h3>SCANDIR ".$dir."</h3>";
 	    $sub_dir = str_replace($dir_starting, ".", $dir);
 	    //if($debug) echo "<h3>SCANDIR ".$sub_dir."</h3>";
-	    $count_files=0;
+	    
 		echo '<ol>';
 	    foreach($ffs as $ff){
 	        if($ff != '.' && $ff != '..'){
