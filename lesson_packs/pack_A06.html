@@ -1,0 +1,144 @@
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Directory Listing with rating</title>
+<script type="text/javascript">
+    var first_click=true;
+    var url_time_param=location.search.substring(1).indexOf("time");
+    // (((((((((((((((((((  preset timers (((((((((((((((((((
+    var additional_wait_time=0;
+    var url_timer2=location.search.substring(1).indexOf("timer2");
+    var url_timer3=location.search.substring(1).indexOf("timer3");
+    var url_timer4=location.search.substring(1).indexOf("timer4");
+    var url_timer5=location.search.substring(1).indexOf("timer5");
+    var url_timer6=location.search.substring(1).indexOf("timer6");
+    var url_timer7=location.search.substring(1).indexOf("timer7");
+
+    if (url_timer2!==-1)additional_wait_time= -3;
+    if (url_timer3!==-1)additional_wait_time= -2;
+    if (url_timer4!==-1)additional_wait_time= -1;
+    if (url_timer5!==-1)additional_wait_time= 0;
+    if (url_timer6!==-1)additional_wait_time= 1;
+    if (url_timer7!==-1)additional_wait_time= 2;
+    var additional_wait_minutes=additional_wait_time*1000*60;
+    // ))))))))))))))))  preset timers )))))))))))))))))))))))
+
+</script>
+
+</head>
+<body  onload="init_links()">
+<!--v20190203a - fixed value file_count bug -->
+<TABLE BORDER="2" CELLPADDING="2" CELLSPACING="2"  style="table-layout: fixed;" WIDTH="100%" height=100%>
+<tbody><tr style="vertical-align:top" valign="top">
+<td style="width: 120px;word-wrap:break-word;" valign="top">
+
+<b>Eπιλέξτε:</b>
+<div style="height: 600px; overflow: auto">
+<ol>
+<!--   MAIN MENU LINKS ############################### -->      
+    
+
+<div id="div1" onClick="showItTimer(); return true;" > 
+
+<li><a href="http://educ.swf.dimotiko.tk/coloring_book_games/color_ramkid_pccollet_xromatizw_me_grammata.swf" target="sideframe1">http ramkid_pccollet_xromatizw_me_grammata</a></li>
+
+
+</div>
+<div id="div2" >
+<li><a href="./graphics_/animate_draw_your_cartoon_character_noAdsUrl.swf" target="sideframe1">animate_draw_your_cartoon_character</a></li>
+
+  
+
+</div>
+<div id="div3" >
+<li><a href="./ab/magnetic_draw__paint_y8_NoNavUrl.swf"  target="sideframe1">magnetic_draw__paint</a></li>      
+
+</div>
+<div id="div4" >
+<li><a href="./math_small_classes/math-platformer__collect_numbers_GREEK_NoNavUrl.swf" target="sideframe1">math-platformer collect_numbers_GREEK</a></li>
+
+
+</div>
+<div id="div5" >
+<li><a href="./fun/physics/energy_physics__electrocute_puzzle_NoNavUrl.swf" target="sideframe1">energy_physics electrocute puzzle </a></li>
+
+
+</div>
+<div id="div6" >
+
+<li><a href="./fun/puzzle_board/smart-chess-18953_NoNavURL.swf" target="sideframe1">smart-chess-18953</a></li>
+
+<li><a href="./fun/pointclick/MonkeyGOHappyCandy_pencilkids_HexNoAdUrl.swf" target="sideframe1">MonkeyGOHappyCandy</a></li>
+</div>
+
+<!--   MAIN MENU LINKS ############################### -->          
+</ol>
+</div>
+</TD>
+
+<TD style="vertical-align:top;height:100%"  valign="top">
+<iframe name="sideframe1" src="" allowfullscreen="" height="98%" frameborder="0" width="98%"></iframe>
+
+</TD>
+</TR>
+
+</TABLE>
+
+<!-- FUNCTIONS #################### -->
+<script type="text/javascript">
+
+
+    //if we find a parameter that contains word "time" (eg packA01.html?timer) then we hide all the other links
+function init_links(){
+    if(url_time_param!==-1 ) {
+
+document.getElementById("div2").style.visibility = "hidden";
+document.getElementById("div3").style.visibility = "hidden";
+document.getElementById("div4").style.visibility = "hidden";
+document.getElementById("div5").style.visibility = "hidden";
+document.getElementById("div6").style.visibility = "hidden";
+        
+        /*document.getElementById("div2").style.visibility = "hidden";
+        document.getElementById("div3").style.visibility = "hidden";
+        document.getElementById("div4").style.visibility = "hidden";
+        document.getElementById("div5").style.visibility = "hidden";
+        */
+        //document.getElementById("div6").style.visibility = "hidden";
+        
+    }
+}
+
+function showItTimer() {
+
+    if(first_click && url_time_param !==-1 ) {
+        //alert("first_timer=true   , "+"location.search.substring(1)="+location.search.substring(1));
+        
+    
+        //if(location.search.substring(1)>0)  alert("location.search.substring(1)="+location.search.substring(1));
+        var minute=1000*60;
+        console.log("first click , timers set every :");
+        console.log((5*minute + additional_wait_minutes)/60/1000);
+            //############ TEST ###################
+            setTimeout(function(){document.getElementById("div2").style.visibility = "visible"}, 2000);//test
+            setTimeout(function(){document.getElementById("div2").style.visibility = "hidden"}, 5000);//test
+
+            setTimeout(function(){document.getElementById("div4").style.visibility = "visible"}, minute/60);//test
+            setTimeout(function(){document.getElementById("div4").style.visibility = "hidden"}, 3000);//test
+            // ########### TEST #####################
+
+setTimeout(function(){document.getElementById("div2").style.visibility = "visible"}, 5*minute+additional_wait_minutes);
+setTimeout(function(){document.getElementById("div3").style.visibility = "visible"}, 10*minute+additional_wait_minutes);
+setTimeout(function(){document.getElementById("div4").style.visibility = "visible"}, 15*minute+additional_wait_minutes);
+setTimeout(function(){document.getElementById("div5").style.visibility = "visible"}, 20*minute+additional_wait_minutes);
+setTimeout(function(){document.getElementById("div6").style.visibility = "visible"}, 25*minute+additional_wait_minutes);
+
+        
+    }
+    first_click=false;
+
+    return false;
+} // end of showItTimer()
+</script>
+
+</body></html>
+
+    
