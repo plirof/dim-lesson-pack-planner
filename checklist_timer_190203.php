@@ -21,26 +21,20 @@ if($_REQUEST) {
 	$counter=1;
 	$time_multiplier=0;
 	$time_multiplier_increment=5;
-	$flag_div6_opened=false;
+
 
 	foreach($_REQUEST as $key => $value){
 	       // $_REQUEST[$key] = $this->_db->realEscapeString($value);
 
+
 		if($counter==1) $line_to_add="\n".'<div id="div1" onClick="showItTimer(); return true;" > '."\n".'<li><a href="'.$value.'"  target="sideframe1">'.$key.'</a></li>'."\n".'</div>';
 		if($counter>1) {
+			$line_to_add='<div id="div'.$counter.'" >'."\n".'<li><a href="'.$value.'" target="sideframe1">'.$key.'</a></li>'."\n".'</div>';
 
-			$line_to_add='';
-			if (!$flag_div6_opened) $div_hide_on_init=$div_hide_on_init.'document.getElementById("div'.$counter.'").style.visibility = "hidden";'."\n";
+			$div_hide_on_init=$div_hide_on_init.'document.getElementById("div'.$counter.'").style.visibility = "hidden";'."\n";
 
-			if (!$flag_div6_opened) $setTimeout_div_text=$setTimeout_div_text.'setTimeout(function(){document.getElementById("div'.$counter.'").style.visibility = "visible"}, '.$time_multiplier.'*minute+additional_wait_minutes);'."\n";
+			$setTimeout_div_text=$setTimeout_div_text.'setTimeout(function(){document.getElementById("div'.$counter.'").style.visibility = "visible"}, '.$time_multiplier.'*minute+additional_wait_minutes);'."\n";
 
-			if (!$flag_div6_opened)$line_to_add='<div id="div'.$counter.'" >';
-
-			if($counter==6) {	$flag_div6_opened=true;} //stop extra divs after the 6th
-
-			$line_to_add=$line_to_add."\n".'<li><a href="'.$value.'" target="sideframe1">'.$key.'</a></li>'."\n";
-			
-			if (!$flag_div6_opened)$line_to_add=$line_to_add.'</div>';
 
 		}
 
@@ -51,9 +45,8 @@ if($_REQUEST) {
 		$counter++;
 		$time_multiplier=$time_multiplier+$time_multiplier_increment;
 		if($time_multiplier>25)$time_multiplier=25;
-	} // end of foreach(
+	}
 
-	if ($flag_div6_opened)$li_list=$li_list.'</div>'."\n"; //close div6
 
 	$result= 
 '<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
