@@ -1,0 +1,181 @@
+
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>pack_url_param.html </title>
+<script type="text/javascript">
+    //sample 
+    // http://192.168.1.200/swf/pack_url_param.html?url1=coding/Rover_nasa_GREEK1.swf&url2=graphics_/comic_design__garfield_comic_creator_y8.swf&url3=graphics_/paint_artpad_y8_GREEK_noNavAdUrl.swf
+
+    //var base_url="http://192.168.1.200/swf/";
+    var base_url="";
+    var map_url_substring=location.search.substring(1);
+    map_url_substring=decodeURIComponent(map_url_substring);// remove the % url encoded chars
+
+   	var first_click=true;
+   	var url_time_param=location.search.substring(1).indexOf("time");
+   	// (((((((((((((((((((  preset timers (((((((((((((((((((
+   	var additional_wait_time=0;
+   	var url_timer2=location.search.substring(1).indexOf("timer2");
+   	var url_timer3=location.search.substring(1).indexOf("timer3");
+   	var url_timer4=location.search.substring(1).indexOf("timer4");
+   	var url_timer5=location.search.substring(1).indexOf("timer5");
+   	var url_timer6=location.search.substring(1).indexOf("timer6");
+   	var url_timer7=location.search.substring(1).indexOf("timer7");
+
+   	if (url_timer2!==-1)additional_wait_time= -3;
+   	if (url_timer3!==-1)additional_wait_time= -2;
+   	if (url_timer4!==-1)additional_wait_time= -1;
+   	if (url_timer5!==-1)additional_wait_time= 0;
+   	if (url_timer6!==-1)additional_wait_time= 1;
+   	if (url_timer7!==-1)additional_wait_time= 2;
+   	var additional_wait_minutes=additional_wait_time*1000*60;
+   	// ))))))))))))))))  preset timers )))))))))))))))))))))))
+
+
+    function URLToArray(url) {
+        var request = {};
+        var pairs = url.substring(url.indexOf('?') + 1).split('&');
+        for (var i = 0; i < pairs.length; i++) {
+            if(!pairs[i])
+                continue;
+            var pair = pairs[i].split('=');
+            request[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
+            //console.log(request[decodeURIComponent(pair[0])] +" ==== "+ decodeURIComponent(pair[1]));
+         }
+         return request;
+    }
+
+    var myObject=URLToArray(map_url_substring);
+    var url1=myObject["url1"];
+    var url2=myObject["url2"];
+    var url3=myObject["url3"];
+    var url4=myObject["url4"];
+    var url5=myObject["url5"];
+    var url6=myObject["url6"];
+
+
+</script>
+
+</head>
+<body  onload="init_links()">
+<!--v20190129b -->
+<TABLE BORDER="2" CELLPADDING="2" CELLSPACING="2"  style="table-layout: fixed;" WIDTH="100%" height=100%>
+<tbody><tr style="vertical-align:top" valign="top">
+<td style="width: 120px;word-wrap:break-word;" valign="top">
+
+<b>Eπιλέξτε:</b>
+<div style="height: 600px; overflow: auto">
+<ol>
+<!--   MAIN MENU LINKS ############################### -->		
+	
+
+<div id="div1" onClick="showItTimer(); return true;" > 
+<li><div id="div_url1"></div></li>
+</div>
+<div id="div2" >
+<li><div id="div_url2"></div></li>
+</div>
+<div id="div3" >
+<li><div id="div_url3"></div></li>	
+</div>
+<div id="div4" >
+<li><div id="div_url4"></div></li>
+
+</div>
+<div id="div5" >
+<li><div id="div_url5"></div></li>
+</div>
+<div id="div6" >
+<li><div id="div_url6"></div></li>
+</div>
+<div id="div7" >
+
+</div>
+<div id="div8" >
+</div>
+
+<!--   MAIN MENU LINKS ############################### -->			
+</ol>
+</div>
+</TD>
+
+<TD style="vertical-align:top;height:100%"  valign="top">
+<iframe name="sideframe1" src="" allowfullscreen="" height="98%" frameborder="0" width="98%"></iframe>
+
+</TD>
+</TR>
+
+</TABLE>
+
+<!-- FUNCTIONS #################### -->
+<script type="text/javascript">
+
+
+   	//if we find a parameter that contains word "time" (eg packA01.html?timer) then we hide all the other links
+function init_links(){
+   	if(url_time_param!==-1 ) {
+
+document.getElementById("div2").style.visibility = "hidden";
+document.getElementById("div3").style.visibility = "hidden";
+document.getElementById("div4").style.visibility = "hidden";
+document.getElementById("div5").style.visibility = "hidden";
+document.getElementById("div6").style.visibility = "hidden";
+document.getElementById("div7").style.visibility = "hidden";
+document.getElementById("div8").style.visibility = "hidden";
+   		
+		/*document.getElementById("div2").style.visibility = "hidden";
+		document.getElementById("div3").style.visibility = "hidden";
+		document.getElementById("div4").style.visibility = "hidden";
+		document.getElementById("div5").style.visibility = "hidden";
+		*/
+		//document.getElementById("div6").style.visibility = "hidden";
+		
+	}
+}
+
+function showItTimer() {
+
+	if(first_click && url_time_param !==-1 ) {
+		//alert("first_timer=true   , "+"location.search.substring(1)="+location.search.substring(1));
+		
+	
+		//if(location.search.substring(1)>0)  alert("location.search.substring(1)="+location.search.substring(1));
+	    var minute=1000*60;
+	    console.log("first click , timers set every :");
+	    console.log((5*minute + additional_wait_minutes)/60/1000);
+	    	//############ TEST ###################
+          	setTimeout(function(){document.getElementById("div2").style.visibility = "visible"}, 2000);//test
+          	setTimeout(function(){document.getElementById("div2").style.visibility = "hidden"}, 5000);//test
+
+          	setTimeout(function(){document.getElementById("div4").style.visibility = "visible"}, minute/60);//test
+          	setTimeout(function(){document.getElementById("div4").style.visibility = "hidden"}, 3000);//test
+          	// ########### TEST #####################
+
+setTimeout(function(){document.getElementById("div2").style.visibility = "visible"}, 5*minute+additional_wait_minutes);
+setTimeout(function(){document.getElementById("div3").style.visibility = "visible"}, 10*minute+additional_wait_minutes);
+setTimeout(function(){document.getElementById("div4").style.visibility = "visible"}, 15*minute+additional_wait_minutes);
+setTimeout(function(){document.getElementById("div5").style.visibility = "visible"}, 20*minute+additional_wait_minutes);
+setTimeout(function(){document.getElementById("div6").style.visibility = "visible"}, 25*minute+additional_wait_minutes);
+setTimeout(function(){document.getElementById("div7").style.visibility = "visible"}, 25*minute+additional_wait_minutes);
+setTimeout(function(){document.getElementById("div8").style.visibility = "visible"}, 25*minute+additional_wait_minutes);
+
+
+		
+	}
+	first_click=false;
+
+    return false;
+} // end of showItTimer()
+
+div_url1.innerHTML = '<a href="'+base_url+url1+'" target="sideframe1" >'+url1+"</a>" ;
+div_url2.innerHTML = '<a href="'+base_url+url2+'" target="sideframe1" >'+url2+"</a>" ;
+div_url3.innerHTML = '<a href="'+base_url+url3+'" target="sideframe1" >'+url3+"</a>" ;
+div_url4.innerHTML = '<a href="'+base_url+url4+'" target="sideframe1" >'+url4+"</a>" ;
+div_url5.innerHTML = '<a href="'+base_url+url5+'" target="sideframe1" >'+url5+"</a>" ;
+div_url6.innerHTML = '<a href="'+base_url+url6+'" target="sideframe1" >'+url6+"</a>" ;
+
+
+</script>
+
+</body></html>
+
+	
