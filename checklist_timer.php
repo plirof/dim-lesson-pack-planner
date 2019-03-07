@@ -1,5 +1,5 @@
 <?php
-$ver="v20190307 - added probeserver url option";
+$ver="v20190307b - added probeserver url option";
 /* List all SWF files in subfolders
 
 Changes:
@@ -170,7 +170,7 @@ var jsonrequestInterval = function () {
         if (jsonrequestIntervaled.readyState == 4) {
             console.log("The request was made and returned results");
             var response_string =jsonrequestIntervaled.responseText;
-            document.getElementById("bio").innerHTML = response_string;
+            //document.getElementById("bio").innerHTML = response_string;
             
             if (response_string.indexOf("reload") !== -1) {
                 console.log("refreshing browser");
