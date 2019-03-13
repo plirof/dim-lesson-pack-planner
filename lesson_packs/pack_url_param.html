@@ -66,7 +66,7 @@
 <div style="height: 600px; overflow: auto">
 <ol>
 <!--   MAIN MENU LINKS ############################### -->		
-	
+<hr><div id="probeserver"></div><hr> 	
 
 <div id="div1" onClick="showItTimer(); return true;" > 
 <li><div id="div_url1"></div></li>
@@ -173,6 +173,38 @@ div_url4.innerHTML = '<a href="'+base_url+url4+'" target="sideframe1" >'+url4+"<
 div_url5.innerHTML = '<a href="'+base_url+url5+'" target="sideframe1" >'+url5+"</a>" ;
 div_url6.innerHTML = '<a href="'+base_url+url6+'" target="sideframe1" >'+url6+"</a>" ;
 
+//+++++++++++++++++++ probeserver +++++++++++++++++
+var server_probing_enabled=false;
+var url_probeserver=location.search.substring(1).indexOf("probeserver");
+if (url_probeserver!==-1)server_probing_enabled=true;
+
+var timer_server_probe = 30000; //probe every 30 seconds
+var server_probe_file="pack_refresh_browser.txt";
+var jsonrequestInterval = function () {
+    console.log("The request was send");
+    // <hr><div id="probeserver"></div><hr> 
+    var jsonrequestIntervaled = new XMLHttpRequest();
+    jsonrequestIntervaled.open("GET", server_probe_file+"?"+Date.prototype.getTime, true); // Date.prototype.getTime is used to avoid caching
+    jsonrequestIntervaled.send();
+    jsonrequestIntervaled.onreadystatechange = function () {
+        if (jsonrequestIntervaled.readyState == 4) {
+            console.log("The request was made and returned results");
+            var response_string =jsonrequestIntervaled.responseText;
+            document.getElementById("probeserver").innerHTML = response_string;
+            
+            if (response_string.indexOf("reload") !== -1) {
+                console.log("refreshing browser");
+                window.location.reload(true);
+            }
+            
+        }
+    };
+    
+};
+
+if(server_probing_enabled) setInterval(jsonrequestInterval, timer_server_probe);
+
+//-------------------probeserver ---------------
 
 </script>
 

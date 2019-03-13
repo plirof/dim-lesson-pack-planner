@@ -1,4 +1,4 @@
-
+  
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Directory Listing with rating</title>
 <script type="text/javascript">
@@ -35,7 +35,7 @@
 <div style="height: 600px; overflow: auto">
 <ol>
 <!--   MAIN MENU LINKS ############################### -->		
-	
+<hr><div id="probeserver"></div><hr> 
 
 <div id="div1" onClick="showItTimer(); return true;" > 
 <li><a href="./type/typing_bricks__puzzle!!!.swf" target="sideframe1">typing_bricks__puzzle!!!.swf</a></li>
@@ -47,6 +47,7 @@
 </div>
 <div id="div3" >
 <li><a href="./type/assault-typing__shootemup__rapidtyping.com_NoAdUrl.swf" target="sideframe1">assault-typing__shootemup !!</a></li>
+<li><a href="./type/keymory__rapidtyping.com_noADsURLok.swf" target="sideframe1">keymory__rapidtyping_com_noADsURLok_swf2333</a></li>
 </div>
 <div id="div4" >
 <li><a href="./type/brain-racer-integers__math-type-diff_NoNavUrl_!.swf" target="sideframe1">brain-racer MATH type !!</a></li>
@@ -82,10 +83,7 @@
 
 
 
-<li><a href="./type/keymory__rapidtyping.com_noADsURLok.swf" target="sideframe1">keymory__rapidtyping_com_noADsURLok_swf2333</a></li>
-
-
-<li><a href="./type/keytower_noad__stack_blocks_type_noAdUrl.swf" target="sideframe1">keytower_noad__stack_blocks_type_noAdUrl_swf2334</a></li>
+<li><a href="./type/keytower_load__game1_abc_stack_blocks_type_noAdUrl.swf" target="sideframe1">keytower_load__game1_abc_stack_blocks_type_noAdUrl.swf</a></li>
 
 
 <li><a href="./type/qwerty1_for_E_STclass_NoNavUrl.swf" target="sideframe1">qwerty1_for_E_STclass diff !</a></li>
@@ -243,6 +241,40 @@ setTimeout(function(){document.getElementById("div6").style.visibility = "visibl
 
     return false;
 } // end of showItTimer()
+
+//+++++++++++++++++++ probeserver +++++++++++++++++
+var server_probing_enabled=false;
+var url_probeserver=location.search.substring(1).indexOf("probeserver");
+if (url_probeserver!==-1)server_probing_enabled=true;
+
+var timer_server_probe = 30000; //probe every 30 seconds
+var server_probe_file="pack_refresh_browser.txt";
+var jsonrequestInterval = function () {
+    console.log("The request was send");
+    // <hr><div id="probeserver"></div><hr> 
+    var jsonrequestIntervaled = new XMLHttpRequest();
+    jsonrequestIntervaled.open("GET", server_probe_file+"?"+Date.prototype.getTime, true); // Date.prototype.getTime is used to avoid caching
+    jsonrequestIntervaled.send();
+    jsonrequestIntervaled.onreadystatechange = function () {
+        if (jsonrequestIntervaled.readyState == 4) {
+            console.log("The request was made and returned results");
+            var response_string =jsonrequestIntervaled.responseText;
+            document.getElementById("probeserver").innerHTML = response_string;
+            
+            if (response_string.indexOf("reload") !== -1) {
+                console.log("refreshing browser");
+                window.location.reload(true);
+            }
+            
+        }
+    };
+    
+};
+
+if(server_probing_enabled) setInterval(jsonrequestInterval, timer_server_probe);
+
+//-------------------probeserver ---------------
+
 </script>
 
 </body></html>

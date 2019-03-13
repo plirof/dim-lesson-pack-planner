@@ -1,8 +1,9 @@
 <?php
-$ver="v20190307b - added probeserver url option";
+$ver="v20190313 - added probeserver url option";
 /* List all SWF files in subfolders
 
 Changes:
+-v20190313 - added <hr><div id="probeserver"></div><hr>
 -v20190307 - added probeserver url option
 -
 
@@ -94,7 +95,8 @@ if($_REQUEST) {
 <b>Eπιλέξτε:</b>
 <div style="height: 600px; overflow: auto">
 <ol>
-<!--   MAIN MENU LINKS ############################### -->		
+<!--   MAIN MENU LINKS ############################### -->
+<hr><div id="probeserver"></div><hr>		
 	'. $li_list.'
 <!--   MAIN MENU LINKS ############################### -->			
 </ol>
@@ -162,7 +164,7 @@ var timer_server_probe = 30000; //probe every 30 seconds
 var server_probe_file="pack_refresh_browser.txt";
 var jsonrequestInterval = function () {
     console.log("The request was send");
-    // <hr><div id="bio"></div><hr> 
+    // <hr><div id="probeserver"></div><hr> 
     var jsonrequestIntervaled = new XMLHttpRequest();
     jsonrequestIntervaled.open("GET", server_probe_file+"?"+Date.prototype.getTime, true); // Date.prototype.getTime is used to avoid caching
     jsonrequestIntervaled.send();
@@ -170,7 +172,7 @@ var jsonrequestInterval = function () {
         if (jsonrequestIntervaled.readyState == 4) {
             console.log("The request was made and returned results");
             var response_string =jsonrequestIntervaled.responseText;
-            //document.getElementById("bio").innerHTML = response_string;
+            //document.getElementById("probeserver").innerHTML = response_string;
             
             if (response_string.indexOf("reload") !== -1) {
                 console.log("refreshing browser");
