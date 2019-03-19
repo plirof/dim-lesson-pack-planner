@@ -10,15 +10,32 @@ SWFlocal="http://192.168.1.200/swf/"
 SWFpath="http://192.168.1.200/swf/"
 SWFgiortes="http://192.168.1.200/swf/swf_giortes/"
 
+#---------
+GAMESEDU="http://192.168.1.200/gamesedu/"
+GAMESEDUtortuga=""$GAMESEDU"tortuga-kids-logo-gr"
+GAMESEDUtank=""$GAMESEDU"Code-Commander-gr/index_dot_links.html"
+#----------
+
 OOOKIDS="ooo4kids1.3 -n "
 OOOKIDSpathprefix="/opt/lampp/htdocs/askiseis_office/"
 RAMKIDpathprefix="http://192.168.1.200/ramkid/"
 
+
+
 #date "+%A"   : Δευτέρα , Τρίτη , Τετάρτη , Πέμπτη , Παρασκευή 
 # echo $(date -d "+1 days" "+%A")
 DAYOFWEEK=$(date "+%A")  
+WEEKNUMBER=`date +%V`
+# date --date="1984-12-18" +"%V" 
 
+load_extra_apps(){
+# used to activate events (eg pasxa, halloween, etc)	
+cd /tmp
+wget http://192.168.1.200/uploads/john_extra_apps.sh
+chmod a+x john_extra_apps.sh
+. john_extra_apps.sh
 
+}
 
 ironstart() {
 # eg  ironstart ""$SWFlocal"pack_A01.html "$LANDINGpage"15-ΤΕΤΑΡΤΗ-Β1--hour5.html "$SWFlocal"pack_A01.html"
