@@ -29,7 +29,10 @@ v20190402 - modified probeserver reload url option
 
 
 # Script samples
+## probeserver
+<script>
 //+++++++++++++++++++ probeserver v02 190402+++++++++++++++++
+// note : before menu links add this : <hr><div id="probeserver"></div><hr> 
 var server_probing_enabled=false;
 var url_probeserver=location.search.substring(1).indexOf("probeserver");
 if (url_probeserver!==-1)server_probing_enabled=true;
@@ -66,3 +69,17 @@ var jsonrequestInterval = function () {
 if(server_probing_enabled) setInterval(jsonrequestInterval, timer_server_probe);
 
 //-------------------probeserver ---------------
+</script>
+
+## If external js fail loading, get it from alternativesource 
+
+<script>
+    //check if external file is loaded and if not load from CDN (NOTE : also works on Firefox 17)
+    if(typeof(first_click) === 'undefined') {
+    document.write('<script src="pack_js_footer2.js"><\/script>')
+    }
+</script>
+
+##
+
+##
