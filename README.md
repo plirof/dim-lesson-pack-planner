@@ -25,6 +25,10 @@ dimotiko lesson planner
 v20190307 - added probeserver url option
 v20190402 - modified probeserver reload url option
 
+
+
+
+# Script samples
 //+++++++++++++++++++ probeserver v02 190402+++++++++++++++++
 var server_probing_enabled=false;
 var url_probeserver=location.search.substring(1).indexOf("probeserver");

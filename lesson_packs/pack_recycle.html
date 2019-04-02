@@ -1,27 +1,8 @@
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Ανακύκλωση v190401a</title>
-<script type="text/javascript">
-   	var first_click=true;
-   	var url_time_param=location.search.substring(1).indexOf("time");
-   	// (((((((((((((((((((  preset timers (((((((((((((((((((
-   	var additional_wait_time=0;
-   	var url_timer2=location.search.substring(1).indexOf("timer2");
-   	var url_timer3=location.search.substring(1).indexOf("timer3");
-   	var url_timer4=location.search.substring(1).indexOf("timer4");
-   	var url_timer5=location.search.substring(1).indexOf("timer5");
-   	var url_timer6=location.search.substring(1).indexOf("timer6");
-   	var url_timer7=location.search.substring(1).indexOf("timer7");
 
-   	if (url_timer2!==-1)additional_wait_time= -3;
-   	if (url_timer3!==-1)additional_wait_time= -2;
-   	if (url_timer4!==-1)additional_wait_time= -1;
-   	if (url_timer5!==-1)additional_wait_time= 0;
-   	if (url_timer6!==-1)additional_wait_time= 1;
-   	if (url_timer7!==-1)additional_wait_time= 2;
-   	var additional_wait_minutes=additional_wait_time*1000*60;
-   	// ))))))))))))))))  preset timers )))))))))))))))))))))))
+<script src="pack_js_header.js" type="text/javascript"></script>
 
-</script>
 
 </head>
 <body  onload="init_links()">
@@ -71,6 +52,7 @@
 
 <li><a href="./recycle/recycle_cards__need_translation_MED.swf"  target="sideframe1"><b>recycle_cards__need_translation_MED.swf</b></a></li>
 </div>
+<div id="div7" ></div>
 
 <!--   MAIN MENU LINKS ############################### -->			
 </ol>
@@ -86,99 +68,7 @@
 </TABLE>
 
 <!-- FUNCTIONS #################### -->
-<script type="text/javascript">
-
-
-   	//if we find a parameter that contains word "time" (eg packA01.html?timer) then we hide all the other links
-function init_links(){
-   	if(url_time_param!==-1 ) {
-
-document.getElementById("div2").style.visibility = "hidden";
-document.getElementById("div3").style.visibility = "hidden";
-document.getElementById("div4").style.visibility = "hidden";
-document.getElementById("div5").style.visibility = "hidden";
-document.getElementById("div6").style.visibility = "hidden";
-   		
-		/*document.getElementById("div2").style.visibility = "hidden";
-		document.getElementById("div3").style.visibility = "hidden";
-		document.getElementById("div4").style.visibility = "hidden";
-		document.getElementById("div5").style.visibility = "hidden";
-		*/
-		//document.getElementById("div6").style.visibility = "hidden";
-		
-	}
-}
-
-function showItTimer() {
-
-	if(first_click && url_time_param !==-1 ) {
-		//alert("first_timer=true   , "+"location.search.substring(1)="+location.search.substring(1));
-		
-	
-		//if(location.search.substring(1)>0)  alert("location.search.substring(1)="+location.search.substring(1));
-	    var minute=1000*60;
-	    console.log("first click , timers set every :");
-	    console.log((5*minute + additional_wait_minutes)/60/1000);
-	    	//############ TEST ###################
-          	setTimeout(function(){document.getElementById("div2").style.visibility = "visible"}, 2000);//test
-          	setTimeout(function(){document.getElementById("div2").style.visibility = "hidden"}, 5000);//test
-
-          	setTimeout(function(){document.getElementById("div4").style.visibility = "visible"}, minute/60);//test
-          	setTimeout(function(){document.getElementById("div4").style.visibility = "hidden"}, 3000);//test
-          	// ########### TEST #####################
-
-setTimeout(function(){document.getElementById("div2").style.visibility = "visible"}, 5*minute+additional_wait_minutes);
-setTimeout(function(){document.getElementById("div3").style.visibility = "visible"}, 10*minute+additional_wait_minutes);
-setTimeout(function(){document.getElementById("div4").style.visibility = "visible"}, 15*minute+additional_wait_minutes);
-setTimeout(function(){document.getElementById("div5").style.visibility = "visible"}, 20*minute+additional_wait_minutes);
-setTimeout(function(){document.getElementById("div6").style.visibility = "visible"}, 25*minute+additional_wait_minutes);
-
-		
-	}
-	first_click=false;
-
-    return false;
-} // end of showItTimer()
-
-//+++++++++++++++++++ probeserver v02 190402+++++++++++++++++
-var server_probing_enabled=false;
-var url_probeserver=location.search.substring(1).indexOf("probeserver");
-if (url_probeserver!==-1)server_probing_enabled=true;
-
-var timer_server_probe = 30000; //probe every 30 seconds
-var server_probe_file="pack_refresh_browser.txt";
-var jsonrequestInterval = function () {
-    console.log("The request was send");
-    // <hr><div id="probeserver"></div><hr> 
-    var jsonrequestIntervaled = new XMLHttpRequest();
-    var random_number=Math.random(); // OLD was=Date.prototype.getTime;
-    jsonrequestIntervaled.open("GET", server_probe_file+"?"+random_number, true); // Date.prototype.getTime is used to avoid caching
-    jsonrequestIntervaled.send();
-    jsonrequestIntervaled.onreadystatechange = function () {
-        if (jsonrequestIntervaled.readyState == 4) {
-            console.log("The request was made and returned results (with random number="+random_number);
-            var response_string =jsonrequestIntervaled.responseText;
-
-            //always add our extra text
-            document.getElementById("probeserver").innerHTML = response_string;
-            
-            //in case we put the word reload, refresh browser
-            if (response_string.indexOf("reload") !== -1) {
-                console.log("refreshing browser");
-                //document.getElementById("probeserver").innerHTML = response_string;
-                window.location.reload(true);
-            }
-            
-        }
-    };
-    
-};
-
-if(server_probing_enabled) setInterval(jsonrequestInterval, timer_server_probe);
-
-//-------------------probeserver ---------------
-
-</script>
+<script src="pack_js_footer.js" type="text/javascript"></script>
 
 </body></html>
 
