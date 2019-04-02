@@ -30,7 +30,7 @@ v20190402 - modified probeserver reload url option
 
 # Script samples
 ## probeserver
-<script>
+```javascript
 //+++++++++++++++++++ probeserver v02 190402+++++++++++++++++
 // note : before menu links add this : <hr><div id="probeserver"></div><hr> 
 var server_probing_enabled=false;
@@ -69,16 +69,16 @@ var jsonrequestInterval = function () {
 if(server_probing_enabled) setInterval(jsonrequestInterval, timer_server_probe);
 
 //-------------------probeserver ---------------
-</script>
+```
 
 ## If external js fail loading, get it from alternativesource 
 
-<script>
+```javascript
     //check if external file is loaded and if not load from CDN (NOTE : also works on Firefox 17)
     if(typeof(first_click) === 'undefined') {
-    document.write('<script src="pack_js_footer2.js"><\/script>')
+    document.write('<script src="https://raw.githubusercontent.com/plirof/dim-lesson-pack-planner/master/lesson_packs/pack_js_footer.js"><\/script>')
     }
-</script>
+```
 
 ##
 
