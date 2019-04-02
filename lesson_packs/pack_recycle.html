@@ -1,6 +1,5 @@
-
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Ανακύκλωση</title>
+<title>Ανακύκλωση v190401a</title>
 <script type="text/javascript">
    	var first_click=true;
    	var url_time_param=location.search.substring(1).indexOf("time");
@@ -35,7 +34,7 @@
 <div style="height: 600px; overflow: auto">
 <ol>
 <!--   MAIN MENU LINKS ############################### -->		
-	
+<hr><div id="probeserver"></div><hr>  
 
 <div id="div1" onClick="showItTimer(); return true;" > 
 <li><a href="./recycle/junkmonster_noNavAdUrl_!!.swf" target="sideframe1"><b>Σκουπίδια στον κατάλληλο κάδο</b> junkmonster</a></li>
@@ -50,15 +49,27 @@
 <li><a href="./recycle/Go_Recycle_arrow_keys(5min_each_game).swf"  target="sideframe1"><b>Go_Recycle maze</b></a></li>
 </div>
 <li><a href="./recycle/Recycle(drag_drop)_(okOffline).swf" target="sideframe1">Recycle(drag_drop) <b>Σωστά σκουπίδια στον φωτισμένο κάδο</b></a></li>
+<li><a href="./recycle/landfillbill__recycle_worker_NoNav2.swf"  target="sideframe1"><b>landfillbill__recycle_worker_NoNav2.swf</b></a></li>
+
+<li><a href="./recycle/recycle_match__greek1_noNav.swf" target="sideframe1">recycle_match βρες τα ίδια και ανακύκλωσε</a></li>
 <div id="div5" >
 <li><a href="./recycle/Recycle_Fun(grabber)__(okOffline).swf" target="sideframe1">Recycle_Fun (γερανός grabber)</a></li>
 </div>
 <div id="div6" >
 
 
+<li><a href="./recycle/Bloom_defender__earth_day_TD_NoNav1.swf"  target="sideframe1"><b>Bloom_defender__earth_day_TD (8ΜΒ)</b></a></li>
+<li><a href="./recycle/e-on-energy-champions__recycle_NoNav.swf"  target="sideframe1"><b>e-on-energy-champions__recycle_NoNav.swf</b></a></li>
+<li><a href="./recycle/recycle_shooting__slingshot_Greek_NoNav.swf"  target="sideframe1"><b>recycle_shooting__slingshot_Greek_NoNav.swf</b></a></li>
+<li><a href="./recycle/the_recycler__grab-with-mouse_NoNav.swf"  target="sideframe1"><b>the_recycler<br>grab-with-mouse πίαστε τα σκουπίδια και πετάξτε τα στον κάδο</b></a></li>
+<li><a href="./recycle/wiggi_recycle__factory_NoNav.swf"  target="sideframe1"><b>wiggi_recycle factory</b></a></li>
+<li><a href="./recycle/the_recycle_game__sort_teddybear_ENG.swf"  target="sideframe1"><b>the_recycle_game sort_teddybear ENG</b></a></li>
+
 
 <li><a href="./recycle/recycle_huruhumi(recycle_or_compost).swf" target="sideframe1">recycle huruhumi (<b>ανακύκλωση ή κομποστοποίηση</b> - recycle_or_compost)</a></li>
 
+
+<li><a href="./recycle/recycle_cards__need_translation_MED.swf"  target="sideframe1"><b>recycle_cards__need_translation_MED.swf</b></a></li>
 </div>
 
 <!--   MAIN MENU LINKS ############################### -->			
@@ -128,6 +139,45 @@ setTimeout(function(){document.getElementById("div6").style.visibility = "visibl
 
     return false;
 } // end of showItTimer()
+
+//+++++++++++++++++++ probeserver v02 190402+++++++++++++++++
+var server_probing_enabled=false;
+var url_probeserver=location.search.substring(1).indexOf("probeserver");
+if (url_probeserver!==-1)server_probing_enabled=true;
+
+var timer_server_probe = 30000; //probe every 30 seconds
+var server_probe_file="pack_refresh_browser.txt";
+var jsonrequestInterval = function () {
+    console.log("The request was send");
+    // <hr><div id="probeserver"></div><hr> 
+    var jsonrequestIntervaled = new XMLHttpRequest();
+    var random_number=Math.random(); // OLD was=Date.prototype.getTime;
+    jsonrequestIntervaled.open("GET", server_probe_file+"?"+random_number, true); // Date.prototype.getTime is used to avoid caching
+    jsonrequestIntervaled.send();
+    jsonrequestIntervaled.onreadystatechange = function () {
+        if (jsonrequestIntervaled.readyState == 4) {
+            console.log("The request was made and returned results (with random number="+random_number);
+            var response_string =jsonrequestIntervaled.responseText;
+
+            //always add our extra text
+            document.getElementById("probeserver").innerHTML = response_string;
+            
+            //in case we put the word reload, refresh browser
+            if (response_string.indexOf("reload") !== -1) {
+                console.log("refreshing browser");
+                //document.getElementById("probeserver").innerHTML = response_string;
+                window.location.reload(true);
+            }
+            
+        }
+    };
+    
+};
+
+if(server_probing_enabled) setInterval(jsonrequestInterval, timer_server_probe);
+
+//-------------------probeserver ---------------
+
 </script>
 
 </body></html>
