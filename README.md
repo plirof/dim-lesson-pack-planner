@@ -74,10 +74,12 @@ if(server_probing_enabled) setInterval(jsonrequestInterval, timer_server_probe);
 ## If external js fail loading, get it from alternativesource 
 
 ```javascript
+<script>
     //check if external file is loaded and if not load from CDN (NOTE : also works on Firefox 17)
     if(typeof(first_click) === 'undefined') {
     document.write('<script src="https://raw.githubusercontent.com/plirof/dim-lesson-pack-planner/master/lesson_packs/pack_js_footer.js"><\/script>')
     }
+</script>    
 ```
 
 ##

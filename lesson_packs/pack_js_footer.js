@@ -2,10 +2,12 @@
 /*
 * pack_js_footer  (put this in same folder as parent html)
 *
+*
+* Changes:
 * ver190404 -showdiv
 * ver190402 -all scripts are now in footer
 * 
-* 
+* example : index.html?showdiv5\&timer3\&probeserver , 
 */
 
     var first_click=true;
