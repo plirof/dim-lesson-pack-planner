@@ -26,7 +26,10 @@ v20190307 - added probeserver url option
 v20190402 - modified probeserver reload url option
 
 
-
+# github CDN example
+https://raw.githubusercontent.com/plirof/dim-lesson-pack-planner/master/lesson_packs/pack_js_footer.js
+MUST be server/CDN as :
+https://cdn.jsdelivr.net/gh/plirof/dim-lesson-pack-planner/lesson_packs/pack_js_footer.js
 
 # Script samples
 ## probeserver
