@@ -112,11 +112,11 @@ lightbot_iron_browser "maps_easy.txt http://192.168.1.200/swf/pack_A02.html"
 #  -----------ΣΤ2--hour# -----------
 lightbot_iron_browser "maps_random_2%284x4_3lights%29.txt http://192.168.1.200/swf/pack_A02.html"
 #oookidsopen "OFFICE_extra_files/pliktrologisi_j01.1_antigrafi_stratigiki_ekmathisis.doc"
-#ironstart ""$CODEorg"13/puzzle/1 "$LANDINGpages"ΠΑΡΑΣΚΕΥΗ-ΣΤ2--hour3__dim10.html tortuga.dimotiko.tk "$SWFlocal"fun/finding-santa__christmas_find_noAdURL_!!.swf"
+#ironstart ""$CODEorg"13/puzzle/1 "$LANDINGpages"ΠΑΡΑΣΚΕΥΗ-ΣΤ2--hour3__dim10.html tortuga.patatakia.tk "$SWFlocal"fun/finding-santa__christmas_find_noAdURL_!!.swf"
 # -----------Ε1--hour5-----------
 lightbot_iron_browser "maps_random_2%284x4_3lights%29.txt http://192.168.1.200/swf/pack_A02.html"
 #oookidsopen "OFFICE_extra_files/pliktrologisi_j02.1_antigrafi_katanomi_wron.doc"
-#ironstart ""$CODEorg"13/puzzle/1 "$LANDINGpages"ΠΑΡΑΣΚΕΥΗ-Ε1--hour5__dim10.html tortuga.dimotiko.tk "$SWFlocal"fun/finding-santa__christmas_find_noAdURL_!!.swf"
+#ironstart ""$CODEorg"13/puzzle/1 "$LANDINGpages"ΠΑΡΑΣΚΕΥΗ-Ε1--hour5__dim10.html tortuga.patatakia.tk "$SWFlocal"fun/finding-santa__christmas_find_noAdURL_!!.swf"
 # -----------Β--hour6-----------
 #/opt/eduActiv8/eduActiv8
 lightbot_iron_browser "maps_easy.txt http://192.168.1.200/swf/pack_A02.html"
@@ -125,10 +125,10 @@ lightbot_iron_browser "maps_easy.txt http://192.168.1.200/swf/pack_A02.html"
 fi
 
 
-#ironstart ""$CODEorg"13/puzzle/1 http://192.168.1.200/ΔΕΥΤΕΡΑ-Γ1--hour3 http://tortuga.dimotiko.tk"
-#ironstart ""$CODEorg"10/puzzle/1 http://192.168.1.200/ΔΕΥΤΕΡΑ-Γ2--hour4 http://tortuga.dimotiko.tk"
-#ironstart ""$CODEorg"13/puzzle/1 http://192.168.1.200/ΔΕΥΤΕΡΑ-ΣΤ2--hour5 http://tortuga.dimotiko.tk"
-#ironstart ""$CODEorg"13/puzzle/1 http://192.168.1.200/ΔΕΥΤΕΡΑ-ΣΤ1--hour6 http://tortuga.dimotiko.tk"
+#ironstart ""$CODEorg"13/puzzle/1 http://192.168.1.200/ΔΕΥΤΕΡΑ-Γ1--hour3 http://tortuga.patatakia.tk"
+#ironstart ""$CODEorg"10/puzzle/1 http://192.168.1.200/ΔΕΥΤΕΡΑ-Γ2--hour4 http://tortuga.patatakia.tk"
+#ironstart ""$CODEorg"13/puzzle/1 http://192.168.1.200/ΔΕΥΤΕΡΑ-ΣΤ2--hour5 http://tortuga.patatakia.tk"
+#ironstart ""$CODEorg"13/puzzle/1 http://192.168.1.200/ΔΕΥΤΕΡΑ-ΣΤ1--hour6 http://tortuga.patatakia.tk"
 
 # following opens many tabs (note the double quotes "")
 #. iron_flash_puppy_pepper_sda1.sh ""$CODEorg"8/puzzle/1 https://studio.code.org/s/course1"
