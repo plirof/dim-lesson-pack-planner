@@ -4,6 +4,7 @@
 *
 *
 * Changes:
+* ver190411 -noopengame (initial ver) (removes opengame -in case we run a plain Http server with no PHP)
 * ver190410 -opengame (initial ver)
 * ver190404 -showdiv
 * ver190402 -all scripts are now in footer
@@ -43,6 +44,7 @@
     // ))))))))))))))))  option to show only specific DIV  )))))))))))))))))))))))
 
     var url_opengame=location.search.substring(1).indexOf("opengame"); //check if we want opengame as prefix to all urls
+    var url_noopengame=location.search.substring(1).indexOf("noopengame"); //check if we DO NOT want opengame as prefix to all urls (for PHPless web servers)
 
 
 //if we find a parameter that contains word "time" (eg packA01.html?timer) then we hide all the other links
@@ -146,7 +148,7 @@ if(server_probing_enabled) setInterval(jsonrequestInterval, timer_server_probe);
 //-------------------probeserver ---------------
 
 
-// ((((((((((((((((((((((replace_url v01 190410 opengame ((((((((((((((((((((((
+// ((((((((((((((((((((((replace_url v01 190410 opengame , noopengame ((((((((((((((((((((((
 //source https://stackoverflow.com/questions/4939805/change-all-links-hrefs-urls-with-vanilla-javascript-regex
 function prefix_url(elem, attr) {
     var elems = document.getElementsByTagName(elem);
@@ -155,9 +157,20 @@ function prefix_url(elem, attr) {
         elems[i][attr] = 'opengame.php?file=' + elems[i][attr];
 }
 
-if(url_opengame!==-1) {
-    
+if(url_opengame!==-1) {   
     prefix_url('a', 'href');
+    //replace_url('img', 'src');    
+}
+
+function prefix_remove_url(elem, attr) {
+    var elems = document.getElementsByTagName(elem);
+    for (var i = 0; i < elems.length; i++)
+        elems[i][attr] = elems[i][attr].replace('opengame.php?file=', '');
+        //elems[i][attr] = 'opengame.php?file=' + elems[i][attr];
+}
+
+if(url_opengame!==-1) {   
+    prefix_remove_url('a', 'href');
     //replace_url('img', 'src');    
 }
 
