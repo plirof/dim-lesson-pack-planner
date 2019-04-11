@@ -85,6 +85,25 @@ if(server_probing_enabled) setInterval(jsonrequestInterval, timer_server_probe);
 </script>    
 ```
 
-##
+## Modify all href
+(the idea is to add opengame?file= to all links )
+
+```javascript
+<script>
+//source https://stackoverflow.com/questions/4939805/change-all-links-hrefs-urls-with-vanilla-javascript-regex
+function replace_url(elem, attr) {
+    var elems = document.getElementsByTagName(elem);
+    for (var i = 0; i < elems.length; i++)
+        elems[i][attr] = elems[i][attr].replace('"./', '"opengame.php?file=./');
+}
+
+window.onload = function() {
+    replace_url('a', 'href');
+    replace_url('img', 'src');
+    // etc
+}
+</script>    
+```
+
 
 ##
