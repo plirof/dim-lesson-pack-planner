@@ -154,7 +154,7 @@ function replace_url(elem, attr) {
         elems[i][attr] = elems[i][attr].replace('"./', '"opengame.php?file=./');
 }
 
-if(server_probing_enabled) {
+if(url_opengame!==-1) {
     replace_url('a', 'href');
     //replace_url('img', 'src');    
 }
