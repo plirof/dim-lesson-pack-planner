@@ -1,3 +1,5 @@
 <!-- reloa d  <= remove space to r.e.l.o.a.d/reset page on clients (&probeserver parameter must be given)
  <a href="./type/keytower_load__game1_abc_stack_blocks_type_noAdUrl.swf" target="sideframe1"> <br> - keytower_load__game1_abc_stack_blocks_type_noAdUrl.swf</a>
+ <BR>
+ <a href="http://192.168.1.200/swf/ramkid_selection_swf/ramkid169_editor.swf" target="sideframe1">ΓΡΑΨΤΕ ΚΕΙΜΕΝΟ<br>στην γαλάζια σελίδα ramkid169_editor</a>
 -->
