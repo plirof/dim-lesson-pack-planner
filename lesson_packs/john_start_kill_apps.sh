@@ -1,5 +1,8 @@
-# Script ver 200108b weeks01-09tempfix
-#changes 200107 : temp hardcoded fix : first 9 weeks (o..9) have problem Cause of the starting 0  : 02==2  , 03==3
+# Script 
+#changes 
+#v200217 fixed error in week 08
+#v200210a apokries-pasxa -added tinymce (weeks01-09tempfix)
+#v200107 : temp hardcoded fix : first 9 weeks (o..9) have problem Cause of the starting 0  : 02==2  , 03==3
 # this modifies the weekofyear (eg +1,-1)
 STARTWEEKCOUNT=0
 
@@ -184,12 +187,13 @@ if [ $WEEKNUMBER == $(($STARTWEEKCOUNT+15)) ] || [ "$WEEKNUMBER" == '18' ]
 then
 #--------------------- this is for Full week-all classes events 
 leafpad "WEEK easter ptB    activated --- Week number: $WEEKNUMBER" &
-ironstartincognito ""$SWFgiortes"index_easter.html?timer3\&probeserver"
-ironstartincognito ""$SWFgiortes"index_easter.html?timer3\&probeserver"
-ironstartincognito ""$SWFgiortes"index_easter.html?timer3\&probeserver"
-ironstartincognito ""$SWFgiortes"index_easter.html?timer3\&probeserver"
-ironstartincognito ""$SWFgiortes"index_easter.html?timer3\&probeserver"
-ironstartincognito ""$SWFgiortes"index_easter.html?timer3\&probeserver"
+ironstartincognito ""$SWFgiortes"index_easter.html?probeserver\&timer3 https://plirof.github.io/tinymce_class/tinymce.html?probeserver&file=giorti_pasxa01"
+ironstartincognito ""$SWFgiortes"index_easter.html?probeserver\&timer3 https://plirof.github.io/tinymce_class/tinymce.html?probeserver&file=giorti_pasxa01"
+ironstartincognito ""$SWFgiortes"index_easter.html?probeserver\&timer3 https://plirof.github.io/tinymce_class/tinymce.html?probeserver&file=giorti_pasxa01"
+ironstartincognito ""$SWFgiortes"index_easter.html?probeserver\&timer3 https://plirof.github.io/tinymce_class/tinymce.html?probeserver&file=giorti_pasxa01"
+ironstartincognito ""$SWFgiortes"index_easter.html?probeserver\&timer3 https://plirof.github.io/tinymce_class/tinymce.html?probeserver&file=giorti_pasxa01"
+ironstartincognito ""$SWFgiortes"index_easter.html?probeserver\&timer3 https://plirof.github.io/tinymce_class/tinymce.html?probeserver&file=giorti_pasxa01"
+
 fi
 
 
@@ -213,17 +217,20 @@ ironstartincognito ""$SWFgiortes"other/ramkid_invitation_party/index.html "$SWFp
 ironstartincognito ""$SWFgiortes"other/ramkid_invitation_party/index.html "$SWFpath"ramkid_giortes_apokries_pt1.html http://192.168.1.200/tinymce_class/tinymce.html?probeserver\&file=giorti_apokries01"
 fi
 
-#20190225-08  2020 updated
-if [ $WEEKNUMBER == "0"$(($STARTWEEKCOUNT+08)) ] || [ "$WEEKNUMBER" == '09' ]
+#200217 updated  (NoteSTARTWEEKCOUNT +08 NOT working error)
+if  [ "$WEEKNUMBER" == '08' ] ||  [ "$WEEKNUMBER" == '09' ] || [ $WEEKNUMBER == "0"$(($STARTWEEKCOUNT+08)) ] || [ $WEEKNUMBER == "0"$(($STARTWEEKCOUNT+09)) ]
 then
 #--------------------- this is for Full week-all classes events 
 leafpad "WEEK halloween ptB (for 2 weeks  games)   activated --- Week number: $WEEKNUMBER    20190225-08" &
-ironstartincognito ""$SWFgiortes"index_halloween.html?timer3"
-ironstartincognito ""$SWFgiortes"index_halloween.html?timer3"
-ironstartincognito ""$SWFgiortes"index_halloween.html?timer3"
-ironstartincognito ""$SWFgiortes"index_halloween.html?timer3"
-ironstartincognito ""$SWFgiortes"index_halloween.html?timer3"
-ironstartincognito ""$SWFgiortes"index_halloween.html?timer3"
+ironstartincognito "http://plirof.github.io/tinymce_class/tinymce.html?probeserver\&file=giorti_apokries01 "$SWFgiortes"index_halloween.html?probeserver\&timer3"
+ironstartincognito "http://plirof.github.io/tinymce_class/tinymce.html?probeserver\&file=giorti_apokries01 "$SWFgiortes"index_halloween.html?probeserver\&timer3"
+ironstartincognito "http://plirof.github.io/tinymce_class/tinymce.html?probeserver\&file=giorti_apokries01 "$SWFgiortes"index_halloween.html?probeserver\&timer3"
+ironstartincognito "http://plirof.github.io/tinymce_class/tinymce.html?probeserver\&file=giorti_apokries01 "$SWFgiortes"index_halloween.html?probeserver\&timer3"
+ironstartincognito "http://plirof.github.io/tinymce_class/tinymce.html?probeserver\&file=giorti_apokries01 "$SWFgiortes"index_halloween.html?probeserver\&timer3"
+ironstartincognito ""$SWFgiortes"index_halloween.html?timer3 http://plirof.github.io/tinymce_class/tinymce.html?probeserver\&file=giorti_apokries01"
+ironstartincognito ""$SWFgiortes"index_halloween.html http://plirof.github.io/tinymce_class/tinymce.html?probeserver\&file=giorti_apokries01\&hidediv1"
+ironstartincognito ""$SWFgiortes"index_halloween.html http://plirof.github.io/tinymce_class/tinymce.html?probeserver\&file=giorti_apokries01\&hidediv1"
+
 fi
 
 
@@ -513,14 +520,16 @@ then
 # A-B 
 gcompris &
 #E-ST
+
 ironstartincognito "https://plirof.github.io/tinymce_class/tinymce.html?probeserver\&file=month_jan"" "$SWFlocal"pack_paint1.html?timer3\&probeserver"
 ironstartincognito "https://plirof.github.io/tinymce_class/tinymce.html?probeserver\&file=month_jan"" "$SWFlocal"pack_paint1.html?timer3\&probeserver"
 ironstartincognito "https://plirof.github.io/tinymce_class/tinymce.html?probeserver\&file=month_jan"" "$SWFlocal"pack_paint1.html?timer3\&probeserver"
 ironstartincognito "https://plirof.github.io/tinymce_class/tinymce.html?probeserver\&file=month_jan"" "$SWFlocal"pack_paint1.html?timer3\&probeserver"
 ironstartincognito "https://plirof.github.io/tinymce_class/tinymce.html?probeserver\&file=month_jan"" "$SWFlocal"pack_paint1.html?timer3\&probeserver"
 
+
 ironstartincognito "http://192.168.1.200/tinymce_class/tinymce.html?probeserver\&file=month_jan"" "$SWFlocal"pack_paint1.html?timer3\&probeserver"
-ironstartincognito "http://192.168.1.200/tinymce_class/tinymce.html?probeserver\&file=month_jan" 
+ironstartincognito "http://192.168.1.200/tinymce_class/tinymce.html?probeserver\&file=month_jan"   
 
 $OOOKIDS$OOOKIDSpathprefix"OFFICE_extra_files/pliktrologisi_j02.2_antigrafi_didaktiko_yliko.doc"
 $OOOKIDS$OOOKIDSpathprefix"OFFICE_extra_files/pliktrologisi_j02.2_antigrafi_didaktiko_yliko.doc"
