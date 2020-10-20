@@ -22,6 +22,7 @@ dimotiko lesson planner
 
 
 # changes 
+v201020c -norightclick -disable right click
 v20190307 - added probeserver url option
 v20190402 - modified probeserver reload url option
 
@@ -32,6 +33,17 @@ MUST be server/CDN as :
 https://cdn.jsdelivr.net/gh/plirof/dim-lesson-pack-planner/lesson_packs/pack_js_footer.js
 
 # Script samples
+## Disable right click on main document + iFrame
+```javascript
+// (((((((((((((((((((((((((( option to disable right click v201020c ((((((((((
+    var url_norightclick=location.search.substring(1).indexOf("norightclick");// != to -1 if we have this param
+    if(url_norightclick!==-1) {
+        document.oncontextmenu=new Function("console.log('main page: right-click-context menu -STOPPED');return false") ; //OK normal page Works  
+        setInterval(function(){window.frames["sideframe1"].document.oncontextmenu = function(){console.log("setInterval sideframe1 :right click-DISABLED"); return false;}; }, 5000);
+    }
+// )))))))))))))))))))))))))) option to disable right click ))))))))
+```
+
 ## probeserver
 ```javascript
 //+++++++++++++++++++ probeserver v02 190402+++++++++++++++++
