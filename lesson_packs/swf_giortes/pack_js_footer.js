@@ -4,6 +4,7 @@
 *
 *
 * Changes:
+* ver201020c -norightclick -disable right click : eg http://192.168.1.200/tinymce_class/tinymce_template_form.html?file=temp_test01&norightclick
 * ver190411 -noopengame (initial ver) (removes opengame -in case we run a plain Http server with no PHP)
 * ver190410 -opengame (initial ver)
 * ver190404 -showdiv
@@ -72,6 +73,14 @@ function init_links(){
         //document.getElementById("div6").style.visibility = "hidden";        
     }
 
+
+// (((((((((((((((((((((((((( option to disable right click v201020c ((((((((((
+    var url_norightclick=location.search.substring(1).indexOf("norightclick");// != to -1 if we have this param
+    if(url_norightclick!==-1) {
+        document.oncontextmenu=new Function("console.log('main page: right-click-context menu -STOPPED');return false") ; //OK normal page Works  
+        setInterval(function(){window.frames["sideframe1"].document.oncontextmenu = function(){console.log("setInterval sideframe1 :right click-DISABLED"); return false;}; }, 5000);
+    }
+// )))))))))))))))))))))))))) option to disable right click ))))))))
 
 } // end of function init_links(){
 
