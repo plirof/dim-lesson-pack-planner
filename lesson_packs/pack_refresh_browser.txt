@@ -1,7 +1,16 @@
 <!-- reloa d  <= remove space to r.e.l.o.a.d/reset page on clients (&probeserver parameter must be given)
+ 
+ execut e (remove space and DOT from A.A.A.A and B.B.B.B to e.x.e.c.u.t.e.):
+//execut e TEST AAA.A:console.log("eval-command-console.log--hello");:BBB.B
+//execut e DISABLE RIGHT CLICK AAA.A:setInterval(function(){window.frames["sideframe1"].document.oncontextmenu = function(){console.log("setInterval sideframe1 :right click-DISABLED"); return false;}; }, 5000);document.oncontextmenu=new Function("console.log('main page: right-click-context menu -STOPPED');return false") ;console.log("Right click disabled");:BBB.B
+
+
  <a href="./type/keytower_load__game1_abc_stack_blocks_type_noAdUrl.swf" target="sideframe1"> <br> - keytower_load__game1_abc_stack_blocks_type_noAdUrl.swf</a>
  <BR>
  <a href="http://192.168.1.200/swf/ramkid_selection_swf/ramkid169_editor.swf" target="sideframe1">ΓΡΑΨΤΕ ΚΕΙΜΕΝΟ<br>στην γαλάζια σελίδα ramkid169_editor</a>
  
+
+
+
 -->
 <!--<a href="http://192.168.1.200/swf/pack_recycle.html?probeserver" target="_blank">ΑΝΑΚΥΚΛΩΣΗ</a>-->
