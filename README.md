@@ -22,15 +22,11 @@ dimotiko lesson planner
 
 
 # changes 
+v201025a -pack_refresh_browser.txt execute commands dynamic (requires probeserver activated) (not implemented yet)
 v201020c -norightclick -disable right click
 v20190307 - added probeserver url option
 v20190402 - modified probeserver reload url option
 
-
-# github CDN example
-https://raw.githubusercontent.com/plirof/dim-lesson-pack-planner/master/lesson_packs/pack_js_footer.js
-MUST be server/CDN as :
-https://cdn.jsdelivr.net/gh/plirof/dim-lesson-pack-planner/lesson_packs/pack_js_footer.js
 
 # Script samples
 ## Disable right click on main document + iFrame
@@ -44,7 +40,7 @@ https://cdn.jsdelivr.net/gh/plirof/dim-lesson-pack-planner/lesson_packs/pack_js_
 // )))))))))))))))))))))))))) option to disable right click ))))))))
 ```
 
-## probeserver
+## probeserver (main code)
 ```javascript
 //+++++++++++++++++++ probeserver v02 190402+++++++++++++++++
 // note : before menu links add this : <hr><div id="probeserver"></div><hr> 
@@ -86,6 +82,24 @@ if(server_probing_enabled) setInterval(jsonrequestInterval, timer_server_probe);
 //-------------------probeserver ---------------
 ```
 
+## probeserver (eval addition) 201025 (not implemented yet)
+```javascript
+                var s=response_string; // text of pack_refresh_browser.txt
+                //pack_refresh_browser includes something like= execute AAAA:console.log("eval-command-console.log--hello");:BBBB 
+                //execut e TEST AAAA:console.log("eval-command-console.log--hello");:BBBB
+				//execut e DISABLE RIGHT CLICK AAAA:setInterval(function(){window.frames["sideframe1"].document.oncontextmenu = function(){console.log("setInterval sideframe1 :right click-DISABLED"); return false;}; }, 5000);document.oncontextmenu=new Function("console.log('main page: right-click-context menu -STOPPED');return false") ;console.log("Right click disabled");:BBBB
+
+                 var result_command = s.match(/AAAA:(.*?):BBBB/i);
+                 console.log("+++++++++execute found3="+result_command[1]);
+                 eval(result_command[1]);
+                //document.getElementById("probeserver").innerHTML = response_string;
+            }            
+            
+        }
+    };
+``` 
+
+
 ## If external js fail loading, get it from alternativesource 
 
 ```javascript
@@ -116,6 +130,12 @@ window.onload = function() {
 }
 </script>    
 ```
+
+# github CDN example
+https://raw.githubusercontent.com/plirof/dim-lesson-pack-planner/master/lesson_packs/pack_js_footer.js
+MUST be server/CDN as :
+https://cdn.jsdelivr.net/gh/plirof/dim-lesson-pack-planner/lesson_packs/pack_js_footer.js
+
 
 
 ##
