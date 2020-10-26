@@ -4,6 +4,7 @@
 *
 *
 * Changes:
+* ver201025b - eval (pack_refresh_browser.txt) execute commands dynamic (requires probeserver activated) (not implemented yet)
 * ver201020c -norightclick -disable right click : eg http://192.168.1.200/tinymce_class/tinymce_template_form.html?file=temp_test01&norightclick
 * ver190411 -noopengame (initial ver) (removes opengame -in case we run a plain Http server with no PHP)
 * ver190410 -opengame (initial ver)
@@ -118,8 +119,9 @@ function showItTimer() {
 
 
 
-//+++++++++++++++++++ probeserver v02 190402+++++++++++++++++
+//+++++++++++++++++++ probeserver v03 201025+++++++++++++++++
 var server_probing_enabled=false;
+var server_eval_first_run=true; //to avoid running remote probeserver eval multipletimes
 var url_probeserver=location.search.substring(1).indexOf("probeserver");
 if (url_probeserver!==-1)server_probing_enabled=true;
 
@@ -136,7 +138,7 @@ var jsonrequestInterval = function () {
         if (jsonrequestIntervaled.readyState == 4) {
             console.log("The request was made and returned results (with random number="+random_number);
             var response_string =jsonrequestIntervaled.responseText;
-
+            //console.log("DEBUG response_string="+s);
             //always add our extra text
             document.getElementById("probeserver").innerHTML = response_string;
             
@@ -146,6 +148,19 @@ var jsonrequestInterval = function () {
                 //document.getElementById("probeserver").innerHTML = response_string;
                 window.location.reload(true);
             }
+
+            //v201025b -evel - pack_refresh_browser.txt execute commands dynamic (requires probeserver activated) (not implemented yet)
+            //in case we put the word "execute", run/eval() command
+            if (response_string.indexOf("execute") !== -1) {
+                var s=response_string;               
+                //pack_refresh_browser = execute EVAL:console.log("eval-command-console.log--hello");:EVAL
+                //var result = s.match(/AAAA:(.*?):BBBB/i); //OLD - ONLY for single line
+                //var result = s.match(/AAAA:([\s\S]*?):BBBB/); //multi line                
+                var result = s.match(/EVAL:([\s\S]*?):EVAL/); //multi line                
+                //console.log("DEBUG +++++++++execute found3="+result[1]+"-----------------------");
+                eval(result[1]);
+            }
+
             
         }
     };

@@ -1,0 +1,34 @@
+<!--<a href="http://192.168.1.200/swf/pack_recycle.html?probeserver" target="_blank">ΑΝΑΚΥΚΛΩΣΗ</a>-->
+<!-- reloa d  <= remove space to r.e.l.o.a.d/reset page on clients (&probeserver parameter must be given)
+ 
+
+//+++++++++++++++++++++++++++RUN eval++++++++++++++++++++++++++++++
+execut e (remove space and DOT from EVA.L: and :EVA.L to e.x.e.c.u.t.e.):
+EVAL:
+console.log("DEBUG eval = server_eval_first_run ="+server_eval_first_run);
+
+if(server_eval_first_run) {
+	console.log("DEBUG eval = INSIDE remote server_eval_first_run ="+server_eval_first_run);
+
+	//sample scripts:
+	//eval DISABLE RIGHT CLICK 
+	//setInterval(function(){window.frames["sideframe1"].document.oncontextmenu = function(){console.log("setInterval sideframe1 :right click-DISABLED"); return false;}; }, 5000);document.oncontextmenu=new Function("console.log('main page: right-click-context menu -STOPPED');return false") ;console.log("Right click disabled");
+
+
+
+
+}
+server_eval_first_run=false; // PREVENT script running many times -only once
+:EVAL
+//---------------------------RUN eval END---------------------------
+
+
+ <a href="./type/keytower_load__game1_abc_stack_blocks_type_noAdUrl.swf" target="sideframe1"> <br> - keytower_load__game1_abc_stack_blocks_type_noAdUrl.swf</a>
+ <BR>
+ <a href="http://192.168.1.200/swf/ramkid_selection_swf/ramkid169_editor.swf" target="sideframe1">ΓΡΑΨΤΕ ΚΕΙΜΕΝΟ<br>στην γαλάζια σελίδα ramkid169_editor</a>
+ 
+
+
+
+-->
+
