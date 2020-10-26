@@ -6,26 +6,19 @@ dimotiko lesson planner
 
 
 
-
-
-
 # To DO :
-- make external javascripts pack_header.js and pack_footer.js
--  
+- run remote eval only ONCE
+-
+- (ok)make external javascripts pack_header.js and pack_footer.js 
 
 
 
 
-
-
-
-
-
-# changes 
-v201025a -pack_refresh_browser.txt execute commands dynamic (requires probeserver activated) (not implemented yet)
-v201020c -norightclick -disable right click
-v20190307 - added probeserver url option
-v20190402 - modified probeserver reload url option
+# Changes 
+v201025b - evel (pack_refresh_browser.txt) execute commands dynamic (requires probeserver activated) (not implemented yet)
+v201020c - norightclick -disable right click
+v190307  - added probeserver url option
+v190402  - modified probeserver reload url option
 
 
 # Script samples
@@ -88,9 +81,9 @@ if(server_probing_enabled) setInterval(jsonrequestInterval, timer_server_probe);
                 //pack_refresh_browser includes something like= execute AAAA:console.log("eval-command-console.log--hello");:BBBB 
                 //execut e TEST AAAA:console.log("eval-command-console.log--hello");:BBBB
 				//execut e DISABLE RIGHT CLICK AAAA:setInterval(function(){window.frames["sideframe1"].document.oncontextmenu = function(){console.log("setInterval sideframe1 :right click-DISABLED"); return false;}; }, 5000);document.oncontextmenu=new Function("console.log('main page: right-click-context menu -STOPPED');return false") ;console.log("Right click disabled");:BBBB
-
-                 var result_command = s.match(/AAAA:(.*?):BBBB/i);
-                 console.log("+++++++++execute found3="+result_command[1]);
+                //var result = s.match(/AAAA:(.*?):BBBB/i); //OLD - ONLY for single line
+                var result = s.match(/AAAA:([\s\S]*?):BBBB/); //multi line                   
+                 console.log("DEBUG START +++++++++execute found3="+result_command[1]+"DEBUG END------------------------");
                  eval(result_command[1]);
                 //document.getElementById("probeserver").innerHTML = response_string;
             }            
