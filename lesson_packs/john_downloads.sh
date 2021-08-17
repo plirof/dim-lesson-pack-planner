@@ -204,6 +204,6 @@ chmod a+x /tmp/john_start_kill_apps.sh
 #try remote (to change files  stretchdog-debdive32/live/ )
 cd /tmp
 #change dimotiko number to what is needed
-wget  -T 7 http://swf.patatakia.tk/4class_sfs/john_downloads_remote_101dimotiko.sh --directory-prefix=/tmp/
+wget  -T 7 http://swf-dim.matheme.win/4class_sfs/john_downloads_remote_101dimotiko.sh --directory-prefix=/tmp/
 chmod a+x /tmp/john_downloads_remote_101dimotiko.sh
 . /tmp/john_downloads_remote_101dimotiko.sh 
