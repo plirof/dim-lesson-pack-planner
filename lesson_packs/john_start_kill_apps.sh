@@ -1,6 +1,8 @@
 # Script 
 #changes 
-#v210518 LOCAL 101dim mod : added  --disable-gpu  to ingognito
+#v210817 - changed pixbot.patatakia to pixbot.dimotika (patatakia expired)
+#v210518 -  fix crash flash/iron mod : added  --disable-gpu  to ingognito
+#v210505  - 2021-2022 giortes Parameter set , added slimjet-puppy-home.sh / slimjetstartincognito()  {}
 #v210201a - added /& norightclick to some options
 #v210111a - Replaced $1 with $@ to iron browser functions to fix different behaviour in iron32 & iron64 (untested)
 #v201030c - added norightclick to some & nocopy to rudolf xmas
@@ -27,14 +29,18 @@ STARTWEEKCOUNT=0
 HALLOWEEN_ENGLISH_WEEK_01=43
 APOKRIES_PREWEEK_01=08
 APOKRIES_PREWEEK_02=09
-EASTER_PREWEEK_01=15
-EASTER_PREWEEK_02=16
+EASTER_PREWEEK_01=14
+EASTER_PREWEEK_02=15
 XMAS_PREWEEK_01=50
 XMAS_PREWEEK_02=51
 XMAS_AFTER_01=02
-RECYCLE_DAY=22
+RECYCLE_DAY=00
 INTERNET_SAFETY_01=00
 INTERNET_SAFETY_02=00
+
+MARCH25=12
+OCTOBER28=43
+
 
 #ironstart https://studio.code.org/s/course1
 #ironstart https://studio.code.org/s/course1/stage/4/puzzle/10
@@ -89,20 +95,32 @@ chmod a+x /tmp/john_extra_apps.sh
 
 ironstart() {
 # eg  ironstart ""$SWFlocal"pack_A01.html "$LANDINGpage"15-ΤΕΤΑΡΤΗ-Β1--hour5.html "$SWFlocal"pack_A01.html"
-. iron_flash_puppy_pepper_home.sh "$@"
+. iron_flash_puppy_pepper_home.sh " --disable-gpu ""$@"
 return 5
 }
 
 ironstartincognito() {
 # eg  ironstart ""$SWFlocal"pack_A01.html "$LANDINGpage"15-ΤΕΤΑΡΤΗ-Β1--hour5.html "$SWFlocal"pack_A01.html"
-# 210518 : --disable-gpu seems to solve the crash problems
 . iron_flash_puppy_pepper_home.sh " --disable-gpu --incognito ""$@"
 return 5
 }
 
 ironchangesdat() {
 # eg  ironstart ""$SWFlocal"pack_A01.html "$LANDINGpage"15-ΤΕΤΑΡΤΗ-Β1--hour5.html "$SWFlocal"pack_A01.html"
-. iron_flash_puppy_pepper.sh "--incognito ""$@"
+. iron_flash_puppy_pepper.sh " --disable-gpu --incognito ""$@"
+return 5
+}
+
+
+slimjetstartincognito() {
+# eg  ironstart ""$SWFlocal"pack_A01.html "$LANDINGpage"15-ΤΕΤΑΡΤΗ-Β1--hour5.html "$SWFlocal"pack_A01.html"
+. slimjet-puppy-home.sh "--incognito ""$@"
+return 5
+}
+
+slimjetstart() {
+# eg  ironstart ""$SWFlocal"pack_A01.html "$LANDINGpage"15-ΤΕΤΑΡΤΗ-Β1--hour5.html "$SWFlocal"pack_A01.html"
+. slimjet-puppy-home.sh "$@"
 return 5
 }
 
@@ -263,7 +281,7 @@ ironstartincognito ""$SWFlocal"pack_recycle.html?probeserver\&norightclick\&time
 ironstartincognito ""$SWFlocal"pack_recycle.html?probeserver\&norightclick\&timer3 https://plirof.github.io/tinymce_class/tinymce.html?probeserver\&nocopy"
 ironstartincognito ""$SWFlocal"pack_recycle.html?probeserver\&norightclick\&timer3 https://plirof.github.io/tinymce_class/tinymce.html?probeserver\&nocopy"
 
-fi
+fi  
 
 
 ################## END OF FULL WEEK EVENTS #################################
@@ -280,13 +298,6 @@ echo "Τετάρτη OLOHMERO"
 if [ "$(check_oloimero_time 1302)" == 'OKpassedCheck' ]
 then
 leafpad "run ΟΛΟΗΜΕΡΟ Τετάρτη 13:05" &
-#https://idle-js-games.github.io/incremancer/ 
-ironstartincognito ""$SWFgiortes"index_easter.html?probeserver\&norightclick http://tinyurl.dimotika.tk/?pasxa2021 http://192.168.1.200/incremancer/ "
-
-ironstartincognito ""$SWFgiortes"index_easter.html?probeserver\&norightclick\&timer3 http://tinyurl.dimotika.tk/?pasxa2021 "
-
-
-
 ironstartincognito.sh "http://192.168.1.200/swf/ab/ferryhalim.com.html?timer2\&probeserver http://OLOHMERO http://192.168.1.200/swf/fun/treasure_of_cutlass_reef-__pirate-ship-battle__NoNavUrl!!!.swf"
 #ironstartincognito "http://192.168.1.200/swf/ab/ferryhalim.com.html?timer2\&probeserver http://OLOHMERO"
 fi
@@ -780,6 +791,7 @@ adjustWeekFinalNum_for_week 12
 if [ $WEEKNUMBER == $WEEKFINALNUM ] || [ "$WEEKNUMBER" == 'wk26-MarC' ]  
 then
 
+#March25
 ironstartincognito "http://192.168.1.200/tinymce_class/tinymce.html?probeserver\&file=giorti25mart01" &
 #___ alt online ___ironstartincognito "https://plirof.github.io/tinymce_class/tinymce.html?probeserver\&file=giorti25mart01" &
 
@@ -879,12 +891,6 @@ if [ $WEEKNUMBER == $WEEKFINALNUM ] || [ "$WEEKNUMBER" == 'wk34-MayC' ]
 then
 
 leafpad "WEEK TANK ,pixbot    activated --- Week number: $WEEKNUMBER" &
-## test --disable-gpu
-
-ironstartincognito ""$GAMESEDU"Code-Commander-gr/index_dot_links.html "$GAMESEDU"blockly-games/el/index.html?lang=el http://pixbot.dimotika.tk "$SWFlocal"pack_A02.html --disable-gpu " 
-
-
-
 ironstartincognito ""$GAMESEDU"Code-Commander-gr/index_dot_links.html "$GAMESEDU"blockly-games/el/index.html?lang=el http://pixbot.dimotika.tk "$SWFlocal"pack_A02.html "
 ironstartincognito ""$GAMESEDU"Code-Commander-gr/index_dot_links.html "$GAMESEDU"blockly-games/el/index.html?lang=el http://pixbot.dimotika.tk "$SWFlocal"pack_A02.html "
 ironstartincognito ""$GAMESEDU"Code-Commander-gr/index_dot_links.html "$GAMESEDU"blockly-games/el/index.html?lang=el http://pixbot.dimotika.tk "$SWFlocal"pack_A02.html "
@@ -892,16 +898,12 @@ ironstartincognito ""$GAMESEDU"Code-Commander-gr/index_dot_links.html "$GAMESEDU
 ironstartincognito ""$GAMESEDU"Code-Commander-gr/index_dot_links.html "$SWFlocal"pack_A02.html http://pixbot.dimotika.tk"	
 
 fi
-##TEMP only for pempti 26-5-2021 DELETE
-
 
 adjustWeekFinalNum_for_week 21
 if [ $WEEKNUMBER == $WEEKFINALNUM ] || [ "$WEEKNUMBER" == 'wk35-MayD' ]  
 then
-
-
-
 ironstartincognito ""$SWFlocal"pack_A05.html?probeserver "$SWFlocal"pack_A02.html?probeserver" &
+#ironstartincognito ""$SWFlocal"pack_A05.html "$SWFlocal"pack_A02.html" &
 $OOOKIDS$OOOKIDSpathprefix"OFFICE_extra_files/excel_1.1_pinakas_mathitwn.xls"
 $OOOKIDS$OOOKIDSpathprefix"OFFICE_extra_files/excel_1.1_pinakas_mathitwn.xls"
 ironstartincognito ""$SWFlocal"pack_A05.html "$SWFlocal"pack_A02.html" &
@@ -927,7 +929,7 @@ ironstartincognito "http://192.168.1.200/x-spreadsheet/tinyxls.html?file=lesson1
 
 ironstartincognito "http://tinyxls.dimotika.tk/tinyxls.html?file=lesson1-timetable\&jsonxls=lesson1-timetable\&showsubmit "$SWFlocal"pack_A03.html?probeserver\&norightclick"
 
-
+#http://tinyxls.dimotika.tk/tinyxls.html?file=lesson1-timetable&jsonxls=lesson1-timetable&showsubmit
 fi
 
 
@@ -936,15 +938,6 @@ fi
 adjustWeekFinalNum_for_week 23
 if [ $WEEKNUMBER == $WEEKFINALNUM ] || [ "$WEEKNUMBER" == 'wk37-JuneA' ]  
 then
-
-# TEMP 
-ironstartincognito "http://192.168.1.200/x-spreadsheet/tinyxls.html?file=lesson1-timetable\&jsonxls=lesson1-timetable\&showsubmit "$SWFlocal"pack_A03.html?probeserver\&norightclick"
-ironstartincognito "http://192.168.1.200/x-spreadsheet/tinyxls.html?file=lesson1-timetable\&jsonxls=lesson1-timetable\&showsubmit "$SWFlocal"pack_A03.html?probeserver\&norightclick"
-ironstartincognito "http://192.168.1.200/x-spreadsheet/tinyxls.html?file=lesson1-timetable\&jsonxls=lesson1-timetable\&showsubmit "$SWFlocal"pack_A03.html?probeserver\&norightclick"
-ironstartincognito "http://192.168.1.200/x-spreadsheet/tinyxls.html?file=lesson1-timetable\&jsonxls=lesson1-timetable\&showsubmit "$SWFlocal"pack_A03.html?probeserver\&norightclick"
-
-
-
 ironstartincognito "http://192.168.1.200/tinymce_class/tinymce_submit.html?showsubmit\&file=lesson10 "$SWFlocal"pack_A03.html?probeserver\&norightclick"
 ironstartincognito "http://192.168.1.200/tinymce_class/tinymce_submit.html?showsubmit\&file=lesson10 "$SWFlocal"pack_A03.html?probeserver\&norightclick"
 ironstartincognito "http://192.168.1.200/tinymce_class/tinymce_submit.html?showsubmit\&file=lesson10 "$SWFlocal"pack_A03.html?probeserver\&norightclick"
@@ -957,32 +950,15 @@ ironstartincognito "http://192.168.1.200/tinymce_class/tinymce_submit.html?shows
 echo "empty"
 fi
 
-### IDLE GAMES
 adjustWeekFinalNum_for_week 24
 if [ $WEEKNUMBER == $WEEKFINALNUM ] || [ "$WEEKNUMBER" == 'wk38-JuneB' ]  
 then
 echo "empty"
-ironstartincognito $SWFlocal"pack_idlegames1.html "$SWFlocal"pack_A07.html?probeserver\&norightclick"
-ironstartincognito $SWFlocal"pack_idlegames1.html "$SWFlocal"pack_A07.html?probeserver\&norightclick"
-ironstartincognito $SWFlocal"pack_idlegames1.html "$SWFlocal"pack_A07.html?probeserver\&norightclick"
-ironstartincognito $SWFlocal"pack_idlegames1.html "$SWFlocal"pack_A07.html?probeserver\&norightclick"
-ironstartincognito $SWFlocal"pack_idlegames1.html "$SWFlocal"pack_A07.html?probeserver\&norightclick"
 
 fi
 
 
-adjustWeekFinalNum_for_week 25
-if [ $WEEKNUMBER == $WEEKFINALNUM ] || [ "$WEEKNUMBER" == 'wk38-JuneB' ]  
-then
-echo "empty"
-ironstartincognito $SWFlocal"pack_idlegames1.html "$SWFlocal"pack_A07.html?probeserver\&norightclick"
-ironstartincognito $SWFlocal"pack_idlegames1.html "$SWFlocal"pack_A07.html?probeserver\&norightclick"
-ironstartincognito $SWFlocal"pack_idlegames1.html "$SWFlocal"pack_A07.html?probeserver\&norightclick"
-ironstartincognito $SWFlocal"pack_idlegames1.html "$SWFlocal"pack_A07.html?probeserver\&norightclick"
-ironstartincognito $SWFlocal"pack_idlegames1.html "$SWFlocal"pack_A07.html?probeserver\&norightclick"
 
-
-fi
 
 
 
