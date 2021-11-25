@@ -8,16 +8,20 @@ EVAL:
 console.log("DEBUG eval = server_eval_first_run ="+server_eval_first_run);
 
 if(server_eval_first_run) {
+	//NOTE this wil only run ONCE
 	console.log("DEBUG eval = INSIDE remote server_eval_first_run ="+server_eval_first_run);
 
 	//sample scripts:
 	//eval DISABLE RIGHT CLICK 
 	//setInterval(function(){window.frames["sideframe1"].document.oncontextmenu = function(){console.log("setInterval sideframe1 :right click-DISABLED"); return false;}; }, 5000);document.oncontextmenu=new Function("console.log('main page: right-click-context menu -STOPPED');return false") ;console.log("Right click disabled");
 
+	//document.getElementById("div4").style.visibility = "hidden";
+    //document.getElementById("div5").style.visibility = "visible"; //show hidden 
 
 
 
 }
+
 server_eval_first_run=false; // PREVENT script running many times -only once
 :EVAL
 //---------------------------RUN eval END---------------------------
