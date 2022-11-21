@@ -125,6 +125,14 @@ window.onload = function() {
 </script>    
 ```
 
+## Check chrome version
+	// Detect chrome version
+	function getChromeVersion () {     
+	    var raw = navigator.userAgent.match(/Chrom(e|ium)\/([0-9]+)\./);
+	    return raw ? parseInt(raw[2], 10) : false;
+	}
+	console.log(getChromeVersion ());
+
 # github CDN example
 https://raw.githubusercontent.com/plirof/dim-lesson-pack-planner/master/lesson_packs/pack_js_footer.js
 MUST be server/CDN as :
