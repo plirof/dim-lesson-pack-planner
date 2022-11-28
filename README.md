@@ -125,6 +125,63 @@ window.onload = function() {
 </script>    
 ```
 
+## Replace all href with button to POST a form (required for code.org el-GR)
+```html
+    <!-- Code.org Add On START  ----------------------------  -->
+<form id="frm" action="https://studio.code.org/locale" method="post" target="newtab2" >
+<input type = "hidden" name = "user_return_to" id = "user_return_to" value = "https://studio.code.org/s/course1/lessons/13/levels/1" / >
+<input type = "hidden" name = "locale" value = "el-GR"  >
+    <!-- Code.org Add On END ----------------------------   -->
+
+<li> <a href="https://studio.code.org/s/course1/stage/3/puzzle/1" target="newtab2">1. Χαρούμενοι Χάρτες , 2. Κούνισέ το , 3. Παζλ: Μάθε την μεταφορά και </a></li>
+
+<li><a href="https://studio.code.org/s/course1/stage/4/puzzle/1" target="newtab2"> 4. Λαβύρινθος angry-birds: Ακολουθία </a></li>
+
+</form>
+```
+
+
+```javascript
+    <!-- Code.org Add On START  ----------------------------  -->
+<script type="text/javascript">
+// Replace all HREF with buttons (angry birds add on)
+
+    var links = document.querySelectorAll("a");
+    function get_hrefs(links){
+        var links_array = links.forEach(function(elem){ return elem.getAttribute("href"); });
+        return links_array;
+}
+console.log(get_hrefs(links));
+console.log((links));
+
+
+function href_replace(links){
+    var i=0;
+    var links_array = 
+    
+    links.forEach(function(elem)
+        { 
+            console.log(i);
+            // Create a new element
+            var newNode = document.createElement('div5'+i);
+            // Add ID and content
+            newNode.id = 'replacehrefwithbutton';
+            var text=elem.textContent.trim();
+            newNode.innerHTML =
+            text+'<BR><input type = "submit" name = "user_return_to" id = "user_return_to" value ='+elem.getAttribute("href")+' >'
+            elem.replaceWith(newNode);
+            i++;
+            return elem.getAttribute("href");         
+        });
+
+    return links_array;
+}
+href_replace(links);
+</script>
+    <!-- Code.org Add On END  ----------------------------  -->  
+```
+
+
 ## Check chrome version
 	// Detect chrome version
 	function getChromeVersion () {     
