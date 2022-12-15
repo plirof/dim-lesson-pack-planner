@@ -1,12 +1,12 @@
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>pack-codeorg-1 v221128b  el-GR Replace HREF with Button newtab links</title>
+<title>pack-codeorg-1 v221128c  el-GR Replace HREF with Button newtab links</title>
 
 <script src="pack_js_header.js" type="text/javascript"></script>
 
 </head>
 <body  onload="init_links()">
 <!--
-	v221128b  el-GR Replace HREF with Button ( to always use GREEK version of code.org )
+	v221128c  el-GR Replace HREF with Button ( to always use GREEK version of code.org )
 	v20190313 - added probeserver url option 
 
 -->
@@ -123,8 +123,10 @@ function href_replace(links){
 	    // Add ID and content
 		newNode.id = 'replacehrefwithbutton';
 		var text=elem.textContent.trim();
+		var url=elem.getAttribute("href");
 		newNode.innerHTML =
-		text+'<BR><input type = "submit" name = "user_return_to" id = "user_return_to" value ='+elem.getAttribute("href")+' >'
+		text+'<BR><input type = "submit" name = "user_return_to" id = "user_return_to" value ='+url+' >'+'<a href='+url+' target="newtab2" >ORIG. URL</a>';
+
 		/*'<h1>'+elem.getAttribute("href")+'</h1>' +
 		'<p>The sun is'+ 
 			'<input type = "submit" name = "user_return_to" id = "user_return_to" value =http://studio.code.org/s/course1/lessons/18/levels/1 >'
@@ -154,4 +156,3 @@ href_replace(links);
 
 </body></html>
 
-    
