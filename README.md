@@ -15,6 +15,7 @@ dimotiko lesson planner
 
 
 # Changes 
+v240110  - Added prefix hash to <div id=probeserver></div>
 v201025b - eval (pack_refresh_browser.txt) execute commands dynamic (requires probeserver activated) (not implemented yet)
 v201020c - norightclick -disable right click
 v190307  - added probeserver url option
@@ -22,6 +23,43 @@ v190402  - modified probeserver reload url option
 
 
 # Script samples
+
+## Add hash prefix to href.innerHtml (made for olohmero entries) 240110
+```javascript
+// ((((((((((((((((addHashLabels addhashlabellinks 240110(((((((((((((((((
+function addHashLabels() {
+  const divprobesrv = document.getElementById('probeserver');//get probeserver contents
+  //const links = document.getElementsByTagName('a');
+  const links = divprobesrv.getElementsByTagName('a'); //get all href entries
+  const hashRange = 99 - 1 + 1; // 01 to 99
+  for (let i = 0; i < links.length; i++) {
+    const url = links[i].getAttribute('href');
+    const hash = getHash(url);
+    // Generate prefix based on hash number
+    const prefixletter=links[i].innerHTML.charAt(0); 
+    //console.log("InnetHTML="+prefixletter+ " , innerHTML="+links[i].innerHTML)
+    const prefix = prefixletter+('0' + (hash % hashRange + 1)).slice(-2);
+    
+    // Add prefix to link description
+    links[i].innerHTML = prefix + '- ' + links[i].innerHTML;
+  }
+};
+
+// Function to generate hash from URL
+function getHash(url) {
+  let hash = 0;
+  for (let i = 0; i < url.length; i++) {
+    hash = ((hash << 5) - hash) + url.charCodeAt(i);
+    hash = hash & hash; // Convert to 32bit integer
+  }
+  return Math.abs(hash);
+}
+// )))))))))))))))End Of addHashLabels addhashlabellinks)))))))))))))))))))
+
+```
+
+
+
 ## Disable right click on main document + iFrame
 ```javascript
 // (((((((((((((((((((((((((( option to disable right click v201020c ((((((((((
@@ -189,6 +227,25 @@ href_replace(links);
 	    return raw ? parseInt(raw[2], 10) : false;
 	}
 	console.log(getChromeVersion ());
+
+
+## Load external Script dynamically and execute it 240110 (not used at the moment)
+```javascript
+            
+// Load Javascript dynamically
+if (addhashlabellinks) { //if true THEN load script dynamically
+        var secondScript = document.createElement('script');
+        secondScript.type = 'text/javascript';
+        secondScript.src = 'test_hash.js';
+        secondScript.onload = function() {
+        // code to execute after the second script is loaded and executed
+        addHashLabels();
+};
+document.head.appendChild(secondScript);
+}                        
+           
+```
+
 
 # github CDN example
 https://raw.githubusercontent.com/plirof/dim-lesson-pack-planner/master/lesson_packs/pack_js_footer.js

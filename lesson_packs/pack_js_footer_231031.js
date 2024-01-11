@@ -4,21 +4,19 @@
 *
 *
 * Changes:
-* v240110 - addHashLabels: Add hash prefix in all links loaded inside probeserver (for olohmero mainly)
-* v231031 - breakrefresh# fix error in IF checks
-* v231011 - breakrefresh# reload at specific times start
-* v201025b - eval (pack_refresh_browser.txt) execute commands dynamic (requires probeserver activated) (not implemented yet)
-* v201020c -norightclick -disable right click : eg http://192.168.1.200/tinymce_class/tinymce_template_form.html?file=temp_test01&norightclick
-* v190411 -noopengame (initial ver) (removes opengame -in case we run a plain Http server with no PHP)
-* v190410 -opengame (initial ver)
-* v190404 -showdiv
-* v190402 -all scripts are now in footer
+* ver231031 - breakrefresh# fix error in IF checks
+* ver231011 - breakrefresh# reload at specific times start
+* ver201025b - eval (pack_refresh_browser.txt) execute commands dynamic (requires probeserver activated) (not implemented yet)
+* ver201020c -norightclick -disable right click : eg http://192.168.1.200/tinymce_class/tinymce_template_form.html?file=temp_test01&norightclick
+* ver190411 -noopengame (initial ver) (removes opengame -in case we run a plain Http server with no PHP)
+* ver190410 -opengame (initial ver)
+* ver190404 -showdiv
+* ver190402 -all scripts are now in footer
 * 
 * example : index.html?showdiv5\&timer3\&probeserver , 
 */
 
     var first_click=true;
-    var addhashlabellinks=true; // allows auto hash numbering (maybe not used)
     var url_time_param=location.search.substring(1).indexOf("time");
     // (((((((((((((((((((  preset timers (((((((((((((((((((
     var additional_wait_time=0;
@@ -118,36 +116,6 @@ function showItTimer() {
     return false;
 } // end of showItTimer()
 
-// ((((((((((((((((addHashLabels addhashlabellinks 240110(((((((((((((((((
-function addHashLabels() {
-  const divprobesrv = document.getElementById('probeserver');//get probeserver contents
-  //const links = document.getElementsByTagName('a');
-  const links = divprobesrv.getElementsByTagName('a'); //get all href entries
-  const hashRange = 99 - 1 + 1; // 01 to 99
-  for (let i = 0; i < links.length; i++) {
-    const url = links[i].getAttribute('href');
-    const hash = getHash(url);
-    // Generate prefix based on hash number
-    const prefixletter=links[i].innerHTML.charAt(0); 
-    //console.log("InnetHTML="+prefixletter+ " , innerHTML="+links[i].innerHTML)
-    const prefix = prefixletter+('0' + (hash % hashRange + 1)).slice(-2);
-    
-    // Add prefix to link description
-    links[i].innerHTML = prefix + '- ' + links[i].innerHTML;
-  }
-};
-
-// Function to generate hash from URL
-function getHash(url) {
-  let hash = 0;
-  for (let i = 0; i < url.length; i++) {
-    hash = ((hash << 5) - hash) + url.charCodeAt(i);
-    hash = hash & hash; // Convert to 32bit integer
-  }
-  return Math.abs(hash);
-}
-// )))))))))))))))End Of addHashLabels addhashlabellinks)))))))))))))))))))
-
 
 //-------------------reload at specific times 231011a --START-------------
 //https://stackoverflow.com/questions/1217929/how-to-automatically-reload-a-web-page-at-a-certain-time
@@ -235,21 +203,14 @@ var jsonrequestInterval = function () {
                 //var result = s.match(/AAAA:([\s\S]*?):BBBB/); //multi line                
                 //var result = s.match(/EVAL:([\s\S]*?):EVAL/); //multi line     
                 console.log("refreshbreak---");     
-                if ((response_string.indexOf("breakrefresh2")!== -1) && !refreshbreak2set ) {console.log("refreshbreak2");  refreshAt(9,"02",0); refreshbreak2set=true; }      
-                if ((response_string.indexOf("breakrefresh3")!== -1) && !refreshbreak3set ) {console.log("refreshbreak3");  refreshAt(9,42,0); refreshbreak3set=true; }      
-                if ((response_string.indexOf("breakrefresh4")!== -1) && !refreshbreak4set ) {console.log("refreshbreak4");  refreshAt(10,47,0); refreshbreak4set=true; }      
-                if ((response_string.indexOf("breakrefresh5")!== -1) && !refreshbreak5set ) {console.log("refreshbreak5");  refreshAt(11,33,0); refreshbreak5set=true; }
-                if ((response_string.indexOf("breakrefresh6")!== -1) && !refreshbreak6set ) {console.log("refreshbreak6");  refreshAt(12,27,0); refreshbreak6set=true; }
+                if ((response_string.indexOf("breakrefresh2")!== -1) && !refreshbreak2set ) {console.log("refreshbreak2");  /*refreshAt(9,2,0);*/ refreshbreak2set=true; }      
+                if ((response_string.indexOf("breakrefresh3")!== -1) && !refreshbreak3set ) {console.log("refreshbreak3");  /*refreshAt(9,42,0);*/ refreshbreak3set=true; }      
+                if ((response_string.indexOf("breakrefresh4")!== -1) && !refreshbreak4set ) {console.log("refreshbreak4");  /*refreshAt(10,47,0);*/ refreshbreak4set=true; }      
+                if ((response_string.indexOf("breakrefresh5")!== -1) && !refreshbreak5set ) {console.log("refreshbreak5");  /*refreshAt(11,33,0);*/ refreshbreak5set=true; }
+                if ((response_string.indexOf("breakrefresh6")!== -1) && !refreshbreak6set ) {console.log("refreshbreak6");  /*refreshAt(12,27,0);*/ refreshbreak6set=true; }
                 //console.log("DEBUG +++++++++execute found3="+result[1]+"-----------------------");
                 //eval(result[1]);
-            }
-
-            //in case we put the word reload, refresh browser
-            if (response_string.indexOf("addhashlabellinks") !== -1) {
-                console.log("addhashlabellinks in div probsrv(for olohmero mostly)");
-                addHashLabels();
-            }
-
+            }            
 
             
         }
@@ -289,21 +250,6 @@ if(url_opengame!==-1) {
 }
 
 // )))))))))))))))))))))) replace_url ))))))))))))))))))))))
-
-            /*
-            // Load Javascript dynamically
-            if (addhashlabellinks) {
-              var secondScript = document.createElement('script');
-              secondScript.type = 'text/javascript';
-              secondScript.src = 'test_hash.js';
-              console.log("addhashlabellinks INSIDE");
-              secondScript.onload = function() {
-                // code to execute after the second script is loaded and executed
-                addHashLabels();
-              };
-              document.head.appendChild(secondScript);
-            }                        
-            */
 
 
 

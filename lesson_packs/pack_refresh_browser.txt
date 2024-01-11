@@ -1,6 +1,12 @@
 <!--<a href="http://192.168.1.200/swf/pack_recycle.html?probeserver" target="_blank">ΑΝΑΚΥΚΛΩΣΗ</a>-->
-<!-- reloa d  <= remove space to r.e.l.o.a.d/reset page on clients (&probeserver parameter must be given)
+<!-- 
+v240110 - addHashLabels for footer.js
+
+reloa d  <= remove space to r.e.l.o.a.d/reset page on clients (&probeserver parameter must be given)
  
+10:47=breakre fresh4  ,11:33=breakre fresh5  , 12:27=breakre fresh6  , 9:42=breakre fresh3  //
+addhashlabellinks // activate this to add hash prefix to all probeserver links
+
 
 //+++++++++++++++++++++++++++RUN eval++++++++++++++++++++++++++++++
 execut e (remove space and DOT from EVA.L: and :EVA.L to e.x.e.c.u.t.e.):
@@ -8,26 +14,16 @@ EVAL:
 console.log("DEBUG eval = server_eval_first_run ="+server_eval_first_run);
 
 if(server_eval_first_run) {
-	//NOTE this wil only run ONCE
 	console.log("DEBUG eval = INSIDE remote server_eval_first_run ="+server_eval_first_run);
 
 	//sample scripts:
 	//eval DISABLE RIGHT CLICK 
 	//setInterval(function(){window.frames["sideframe1"].document.oncontextmenu = function(){console.log("setInterval sideframe1 :right click-DISABLED"); return false;}; }, 5000);document.oncontextmenu=new Function("console.log('main page: right-click-context menu -STOPPED');return false") ;console.log("Right click disabled");
 
-	//document.getElementById("div4").style.visibility = "hidden";
-    //document.getElementById("div5").style.visibility = "visible"; //show hidden 
 
-	// Detect chrome version
-	function getChromeVersion () {     
-	    var raw = navigator.userAgent.match(/Chrom(e|ium)\/([0-9]+)\./);
-	    return raw ? parseInt(raw[2], 10) : false;
-	}
-	console.log(getChromeVersion ());
 
 
 }
-
 server_eval_first_run=false; // PREVENT script running many times -only once
 :EVAL
 //---------------------------RUN eval END---------------------------
@@ -37,8 +33,7 @@ server_eval_first_run=false; // PREVENT script running many times -only once
  <BR>
  <a href="http://192.168.1.200/swf/ramkid_selection_swf/ramkid169_editor.swf" target="sideframe1">ΓΡΑΨΤΕ ΚΕΙΜΕΝΟ<br>στην γαλάζια σελίδα ramkid169_editor</a>
  
-<a href="./type/typing_adventure__indiana_jones_NoNavUrl.swf" target="sideframe1"> <br> 0 - typing adventure indiana_jones </a>
- 
+
 
 
 -->
