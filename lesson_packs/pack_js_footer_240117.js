@@ -151,8 +151,8 @@ function getHash(url) {
 
 
 function refreshAt(hh, mm, seconds) {
-    var btime = hh.toString() + mm.toString();
-    refreshAtHHMM(btime);
+    var btime = hh + mm;
+    refreshAt(btime);
 }
 
 //-------------------reload at specific times 231011a --START-------------
