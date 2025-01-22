@@ -974,7 +974,7 @@ then
 #250120: A-B: http://192.168.1.200/swf/pack_A01.html?norightclick&probeserver , _D-ST: pt1 : A)simple basicKIDS ZX v01 page01to05 3min56sec audio8 : https://www.youtube.com/embed/XUqwkJ_I2x4 ,B) HTM2BAS οδηγίες https://www.youtube.com/embed/g1YVRLXFmh8 , C) basic page 6-8 https://www.youtube.com/embed/EFLcaLgmApE
 
 # A-B 
-repeat 6  ironstartincognito ""$SWFlocal"pack_A01.html?norightclick\&probeserver "$SWFlocal"pack_paint1.html?norightclick\&probeserver "$SERVER"zx/zx_htm2tap/ A-ΓpackA1, D-ST_BAS_page1-5,htm2tap_odhgies,BASpage6-8"
+repeat 6  ironstartincognito ""$SWFlocal"pack_A01.html?norightclick\&probeserver "$SWFlocal"pack_paint1.html?norightclick\&probeserver "$SERVER"zx/zx_htm2tap/ http://A-Γ packA1,D-ST BAS page1-5, htm2tap odhgies,BAS page6-"
 #ironstartincognito ""$SWFlocal"pack_A01.html?norightclick\&probeserver "$SWFlocal"pack_A02.html?norightclick\&probeserver"
 
 #repeat 6  $OOOKIDS$OOOKIDSpathprefix"OFFICE_extra_files/pliktrologisi_j02.1_antigrafi_katanomi_wron.doc" &

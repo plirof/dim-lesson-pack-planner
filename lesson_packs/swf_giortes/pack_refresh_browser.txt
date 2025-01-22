@@ -1,6 +1,15 @@
 <!--<a href="http://192.168.1.200/swf/pack_recycle.html?probeserver" target="_blank">ΑΝΑΚΥΚΛΩΣΗ</a>-->
-<!-- reloa d  <= remove space to r.e.l.o.a.d/reset page on clients (&probeserver parameter must be given)
+<!-- 
+v241010 - added here olohmero break
+v240213 - added here 09:02 break
+v240110 - addHashLabels for footer.js 
+
+reloa d  <= remove space to r.e.l.o.a.d/reset page on clients (&probeserver parameter must be given)
  
+10:47=breakr efresh4  ,11:33=breakr efresh5  , 12:27=breakr efresh6  , Olohmero(13:20,14:00,15:00)=breakr efresh7ol
+9:42=breakre fresh3 , 9:02=breakr efresh2  //
+addhashlabellinks // activate this to add hash prefix to all probeserver links -for OLOHMERO mostly (add a space to disable it)
+
 
 //+++++++++++++++++++++++++++RUN eval++++++++++++++++++++++++++++++
 execut e (remove space and DOT from EVA.L: and :EVA.L to e.x.e.c.u.t.e.):

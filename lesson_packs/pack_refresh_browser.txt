@@ -1,12 +1,14 @@
 <!--<a href="http://192.168.1.200/swf/pack_recycle.html?probeserver" target="_blank">ΑΝΑΚΥΚΛΩΣΗ</a>-->
-<!--
-v240117 - refreshtime13:40
-v240110 - addHashLabels for footer.js
+<!-- 
+v241010 - added here olohmero break
+v240213 - added here 09:02 break
+v240110 - addHashLabels for footer.js 
 
 reloa d  <= remove space to r.e.l.o.a.d/reset page on clients (&probeserver parameter must be given)
-
-10:47=breakre fresh4  ,11:33=break refresh5  , 12:27=breakrefresh6  , 9:42=breakre fresh3  //
-addhashlabellinks // activate this to add hash prefix to all probeserver links (add a space to disable it)
+ 
+10:47=breakr efresh4  ,11:33=breakr efresh5  , 12:27=breakr efresh6  , Olohmero(13:20,14:00,15:00)=breakrefresh7ol
+9:42=breakre fresh3 , 9:02=breakr efresh2  //
+addhashlabellinks // activate this to add hash prefix to all probeserver links -for OLOHMERO mostly (add a space to disable it)
 
 
 //+++++++++++++++++++++++++++RUN eval++++++++++++++++++++++++++++++
@@ -30,12 +32,19 @@ server_eval_first_run=false; // PREVENT script running many times -only once
 //---------------------------RUN eval END---------------------------
 
 
+
+
  <a href="./type/keytower_load__game1_abc_stack_blocks_type_noAdUrl.swf" target="sideframe1"> <br> - keytower_load__game1_abc_stack_blocks_type_noAdUrl.swf</a>
  <BR>
  <a href="http://192.168.1.200/swf/ramkid_selection_swf/ramkid169_editor.swf" target="sideframe1">ΓΡΑΨΤΕ ΚΕΙΜΕΝΟ<br>στην γαλάζια σελίδα ramkid169_editor</a>
- 
+<a href="" target="sideframe1"> <hr></a>
+<a href="" target="sideframe1"> <hr></a> 
 
 
 
 -->
+<a href="./fun/pointclick/MonkeyGOHappyScifi__pencilkids_HexNoAdUrl.swf" target="sideframe1">   MonkeyGOHappyScifi__pencilkids_HexNoAdUrl.swf                        <hr></a><BR><a href="./fun/pointclick/wheely-4-time-travel_pointclick_NoNavUrl3.swf" target="sideframe1">   wheely-4-time-travel_pointclick                       <hr></a><a href="https://swf.sxoleio.win/point_click_puzzle_/easy-joe-3_pointclick_easy_NoNavUrl3.swf" target="sideframe1">   easy-joe-3_pointclick          <hr></a><a href="https://swf.sxoleio.win/point_click_puzzle_/failman_FUN_pointclick_NoNavUrl1.swf" target="sideframe1">   failman_FUN_pointclick http          <hr></a>
+<a href="./fun/olohmero/MentalHospital__nonavurl__ruffle.swf" target="sideframe1">   Mental Hospital                     <hr></a><a href="./fun/olohmero/floodedVillage_BoysLife2_puzzle_unlocked_NoNavUrl.swf" target="sideframe1">   floodedVillage                    <hr></a><a href="./fun/olohmero/CrunchBall3000__sports__speedball-like-NoNavUrl_ruffle.swf" target="sideframe1">   Crunch Ball 3000                     <hr></a><a href="./fun/olohmero/zombie-tactics_-turn-based-strategy-hex_ok__jon60kGold_NoNavUrl5.swf" target="sideframe1">   zombie-tactics                     <hr></a><a href="./fun/olohmero/soccer-star__penalty_shoot_NoNavURL!!!.swf" target="sideframe1">   soccer-star__penalty_shoot                     <hr></a>
+
+
 
