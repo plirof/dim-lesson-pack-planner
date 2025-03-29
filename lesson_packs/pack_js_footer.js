@@ -4,6 +4,9 @@
 *
 *
 * Changes:
+* v250203 - Change 'time' to 'timer' (to avoid problems with URLs in pack_url_param.html ). url_time_param=location.search.substring(1).indexOf("timer"); 
+* v250128 - changed currentHref.includes('opengame_ruffle') from currentHref.includes('ruffle') because it ignored many games with ok_ruffle in theirname
+* v250120  - Added breakrefreshALL for all breaks
 * v241213c - Do not clear div probeserver when connection is lost.
 * v241127c - swfChangeHrefToRuffle Dynamically Change URLs to Ruffle when we have newer chrome. Fireforx+Chrome , ignore ruffle versions
 * v241010c - Refeshtime : added olohmero :breakrefresh7ol 13:20,14:"00",15:"00"
@@ -23,7 +26,7 @@
 
     var first_click=true;
     var addhashlabellinks=true; // allows auto hash numbering (maybe not used)
-    var url_time_param=location.search.substring(1).indexOf("time");
+    var url_time_param=location.search.substring(1).indexOf("timer"); //250203 changed time->timer
     var swfChangeHrefToRuffle=true; //Change URLs to Ruffle opengame_ruffle.php when Chrome>ver70
     // (((((((((((((((((((  preset timers (((((((((((((((((((
     var additional_wait_time=0;
@@ -287,6 +290,19 @@ var jsonrequestInterval = function () {
                         //console.log("refreshbreak10TEST");  refreshAt(14,"12","01");
                         refreshbreak7olset=true; 
                     }
+                if ((response_string.indexOf("breakrefreshALL")!== -1) && !refreshbreak7olset ) {
+                        console.log("ALLrefreshbreak2");  refreshAt("09","02",0); refreshbreak2set=true; 
+                        console.log("ALLrefreshbreak3");  refreshAt("09","42",0); refreshbreak3set=true;
+                        console.log("ALLrefreshbreak4");  refreshAt(10,47,0); refreshbreak4set=true;
+                        console.log("ALLrefreshbreak5");  refreshAt(11,33,0); refreshbreak5set=true;
+                        console.log("ALLrefreshbreak6");  refreshAt(12,27,0); refreshbreak6set=true;
+                        console.log("ALLrefreshbreak7");  refreshAt(13,20,"01"); 
+                        console.log("ALLrefreshbreak8");  refreshAt(14,"00","01");
+                        console.log("ALLrefreshbreak9");  refreshAt(15,"00","01");
+
+                        //console.log("refreshbreak10TEST");  refreshAt(14,"12","01");
+                        refreshbreak7olset=true; 
+                    }         
                 //console.log("DEBUG +++++++++execute found3="+result[1]+"-----------------------");
                 //eval(result[1]);
             }
@@ -381,7 +397,8 @@ if(url_opengame!==-1) {
  
         links.forEach(link => {
             const currentHref = link.getAttribute('href');
-            if (currentHref && currentHref.includes('.swf')  && !currentHref.includes('ruffle') ) {
+            //if (currentHref && currentHref.includes('.swf')  && !currentHref.includes('ruffle') ) { //jon 250128 changed by jon - it ignored games that contained ruffle in their name
+            if (currentHref && currentHref.includes('.swf')  && !currentHref.includes('opengame_ruffle') ) {    
                 //link.setAttribute('href', prefix + encodeURIComponent(currentHref)); //ORIG works but shows %2F instead of '/'
                 link.setAttribute('href', prefix + (currentHref));
             }

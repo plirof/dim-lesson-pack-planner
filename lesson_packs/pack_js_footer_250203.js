@@ -4,20 +4,30 @@
 *
 *
 * Changes:
-* ver231031 - breakrefresh# fix error in IF checks
-* ver231011 - breakrefresh# reload at specific times start
-* ver201025b - eval (pack_refresh_browser.txt) execute commands dynamic (requires probeserver activated) (not implemented yet)
-* ver201020c -norightclick -disable right click : eg http://192.168.1.200/tinymce_class/tinymce_template_form.html?file=temp_test01&norightclick
-* ver190411 -noopengame (initial ver) (removes opengame -in case we run a plain Http server with no PHP)
-* ver190410 -opengame (initial ver)
-* ver190404 -showdiv
-* ver190402 -all scripts are now in footer
+* v250203 - Change 'time' to 'timer' (to avoid problems with URLs in pack_url_param.html ). url_time_param=location.search.substring(1).indexOf("timer"); 
+* v250128 - changed currentHref.includes('opengame_ruffle') from currentHref.includes('ruffle') because it ignored many games with ok_ruffle in theirname
+* v250120  - Added breakrefreshALL for all breaks
+* v241213c - Do not clear div probeserver when connection is lost.
+* v241127c - swfChangeHrefToRuffle Dynamically Change URLs to Ruffle when we have newer chrome. Fireforx+Chrome , ignore ruffle versions
+* v241010c - Refeshtime : added olohmero :breakrefresh7ol 13:20,14:"00",15:"00"
+* v240117b - refreshtimeXXYY : Now I can put refreshtime09:15 to reload at 09:15 ,fixed to "09","47"
+* v240110 - addHashLabels: Add hash prefix in all links loaded inside probeserver (for olohmero mainly)
+* v231031 - breakrefresh# fix error in IF checks
+* v231011 - breakrefresh# reload at specific times start
+* v201025b - eval (pack_refresh_browser.txt) execute commands dynamic (requires probeserver activated) (not implemented yet)
+* v201020c -norightclick -disable right click : eg http://192.168.1.200/tinymce_class/tinymce_template_form.html?file=temp_test01&norightclick
+* v190411 -noopengame (initial ver) (removes opengame -in case we run a plain Http server with no PHP)
+* v190410 -opengame (initial ver)
+* v190404 -showdiv
+* v190402 -all scripts are now in footer
 * 
 * example : index.html?showdiv5\&timer3\&probeserver , 
 */
 
     var first_click=true;
-    var url_time_param=location.search.substring(1).indexOf("time");
+    var addhashlabellinks=true; // allows auto hash numbering (maybe not used)
+    var url_time_param=location.search.substring(1).indexOf("timer"); //250203 changed time->timer
+    var swfChangeHrefToRuffle=true; //Change URLs to Ruffle opengame_ruffle.php when Chrome>ver70
     // (((((((((((((((((((  preset timers (((((((((((((((((((
     var additional_wait_time=0;
     var url_timer2=location.search.substring(1).indexOf("timer2");
@@ -116,6 +126,41 @@ function showItTimer() {
     return false;
 } // end of showItTimer()
 
+// ((((((((((((((((addHashLabels addhashlabellinks 240110(((((((((((((((((
+function addHashLabels() {
+  const divprobesrv = document.getElementById('probeserver');//get probeserver contents
+  //const links = document.getElementsByTagName('a');
+  const links = divprobesrv.getElementsByTagName('a'); //get all href entries
+  const hashRange = 99 - 1 + 1; // 01 to 99
+  for (let i = 0; i < links.length; i++) {
+    const url = links[i].getAttribute('href');
+    const hash = getHash(url);
+    // Generate prefix based on hash number
+    const prefixletter=links[i].innerHTML.charAt(0); 
+    //console.log("InnetHTML="+prefixletter+ " , innerHTML="+links[i].innerHTML)
+    const prefix = prefixletter+('0' + (hash % hashRange + 1)).slice(-2);
+    
+    // Add prefix to link description
+    links[i].innerHTML = prefix + '- ' + links[i].innerHTML;
+  }
+};
+
+// Function to generate hash from URL
+function getHash(url) {
+  let hash = 0;
+  for (let i = 0; i < url.length; i++) {
+    hash = ((hash << 5) - hash) + url.charCodeAt(i);
+    hash = hash & hash; // Convert to 32bit integer
+  }
+  return Math.abs(hash);
+}
+// )))))))))))))))End Of addHashLabels addhashlabellinks)))))))))))))))))))
+
+
+function refreshAt(hh, mm, seconds) {
+    var btime = hh.toString() + mm.toString();
+    refreshAtHHMM(btime);
+}
 
 //-------------------reload at specific times 231011a --START-------------
 //https://stackoverflow.com/questions/1217929/how-to-automatically-reload-a-web-page-at-a-certain-time
@@ -133,7 +178,15 @@ refreshbreak3set=false;
 var refreshbreak4set=false;
 var refreshbreak5set=false;
 var refreshbreak6set=false;
-function refreshAt(hours, minutes, seconds) {
+var refreshbreak7olset=false;
+function refreshAtHHMM(breaktime) {
+      // Remove colons from breaktime
+    breaktime = breaktime.replace(/:/g, '');
+    var hours = breaktime.substring(0, 2);
+    var minutes = breaktime.substring(2, 4);
+    var seconds = "00";
+
+
     var now = new Date();
     var then = new Date();
 
@@ -145,7 +198,7 @@ function refreshAt(hours, minutes, seconds) {
     then.setHours(hours);
     then.setMinutes(minutes);
     then.setSeconds(seconds);
-
+    console.log("refreshAt:"+hours+minutes+seconds)
     var timeout = (then.getTime() - now.getTime());
     setTimeout(function() { window.location.reload(true); }, timeout);
 }
@@ -175,7 +228,10 @@ var jsonrequestInterval = function () {
             var response_string =jsonrequestIntervaled.responseText;
             //console.log("DEBUG response_string="+s);
             //always add our extra text
-            document.getElementById("probeserver").innerHTML = response_string;
+            //document.getElementById("probeserver").innerHTML = response_string;  //ORIGINAL works replaced by v241213c
+            if (jsonrequestIntervaled.status === 200  && jsonrequestIntervaled.status!=0 ) {  document.getElementById("probeserver").innerHTML = response_string; console.log("200-pack_js_footer-----ok");   } //* v241213c - Do not clear div probeserver when connection is lost.
+
+            
             
             //in case we put the word reload, refresh browser
             if (response_string.indexOf("reload") !== -1) {
@@ -196,6 +252,24 @@ var jsonrequestInterval = function () {
                 eval(result[1]);
             }
 
+            // +++++++++++++++++++=refreshtimeXXYY++++++++++++++++++++++
+            if (response_string.indexOf("refreshtime") !== -1) {
+              var startIndex = response_string.indexOf("refreshtime") + 11; // Start index after "refreshtime"
+              var endIndex = response_string.indexOf(":", startIndex); // Index of ":" after XX
+              var refreshTime;
+              
+              if (endIndex !== -1) {
+                // Case: refreshtimeXX:YY
+                refreshTime = response_string.substring(startIndex, endIndex) + response_string.substring(endIndex + 1);
+              } else {
+                // Case: refreshtimeXXYY
+                refreshTime = response_string.substring(startIndex);
+              }
+              //console.log("RefreshTime="+refreshTime);
+              refreshAtHHMM(refreshTime);
+            }
+            //-----------------------refreshtimeXX:YY END----------------------
+
             if (response_string.indexOf("breakrefresh") !== -1) {
                 var s=response_string;               
                 //pack_refresh_browser = execute EVAL:console.log("eval-command-console.log--hello");:EVAL
@@ -203,14 +277,42 @@ var jsonrequestInterval = function () {
                 //var result = s.match(/AAAA:([\s\S]*?):BBBB/); //multi line                
                 //var result = s.match(/EVAL:([\s\S]*?):EVAL/); //multi line     
                 console.log("refreshbreak---");     
-                if ((response_string.indexOf("breakrefresh2")!== -1) && !refreshbreak2set ) {console.log("refreshbreak2");  /*refreshAt(9,2,0);*/ refreshbreak2set=true; }      
-                if ((response_string.indexOf("breakrefresh3")!== -1) && !refreshbreak3set ) {console.log("refreshbreak3");  /*refreshAt(9,42,0);*/ refreshbreak3set=true; }      
-                if ((response_string.indexOf("breakrefresh4")!== -1) && !refreshbreak4set ) {console.log("refreshbreak4");  /*refreshAt(10,47,0);*/ refreshbreak4set=true; }      
-                if ((response_string.indexOf("breakrefresh5")!== -1) && !refreshbreak5set ) {console.log("refreshbreak5");  /*refreshAt(11,33,0);*/ refreshbreak5set=true; }
-                if ((response_string.indexOf("breakrefresh6")!== -1) && !refreshbreak6set ) {console.log("refreshbreak6");  /*refreshAt(12,27,0);*/ refreshbreak6set=true; }
+                if ((response_string.indexOf("breakrefresh2")!== -1) && !refreshbreak2set ) {console.log("refreshbreak2");  refreshAt("09","02",0); refreshbreak2set=true; }      
+                if ((response_string.indexOf("breakrefresh3")!== -1) && !refreshbreak3set ) {console.log("refreshbreak3");  refreshAt("09","42",0); refreshbreak3set=true; }      
+                if ((response_string.indexOf("breakrefresh4")!== -1) && !refreshbreak4set ) {console.log("refreshbreak4");  refreshAt(10,47,0); refreshbreak4set=true; }      
+                if ((response_string.indexOf("breakrefresh5")!== -1) && !refreshbreak5set ) {console.log("refreshbreak5");  refreshAt(11,33,0); refreshbreak5set=true; }
+                if ((response_string.indexOf("breakrefresh6")!== -1) && !refreshbreak6set ) {console.log("refreshbreak6");  refreshAt(12,27,0); refreshbreak6set=true; }
+                //olohmero
+                if ((response_string.indexOf("breakrefresh7ol")!== -1) && !refreshbreak7olset ) {
+                        console.log("refreshbreak7");  refreshAt(13,20,"01"); 
+                        console.log("refreshbreak8");  refreshAt(14,"00","01");
+                        console.log("refreshbreak9");  refreshAt(15,"00","01");
+                        //console.log("refreshbreak10TEST");  refreshAt(14,"12","01");
+                        refreshbreak7olset=true; 
+                    }
+                if ((response_string.indexOf("breakrefreshALL")!== -1) && !refreshbreak7olset ) {
+                        console.log("ALLrefreshbreak2");  refreshAt("09","02",0); refreshbreak2set=true; 
+                        console.log("ALLrefreshbreak3");  refreshAt("09","42",0); refreshbreak3set=true;
+                        console.log("ALLrefreshbreak4");  refreshAt(10,47,0); refreshbreak4set=true;
+                        console.log("ALLrefreshbreak5");  refreshAt(11,33,0); refreshbreak5set=true;
+                        console.log("ALLrefreshbreak6");  refreshAt(12,27,0); refreshbreak6set=true;
+                        console.log("ALLrefreshbreak7");  refreshAt(13,20,"01"); 
+                        console.log("ALLrefreshbreak8");  refreshAt(14,"00","01");
+                        console.log("ALLrefreshbreak9");  refreshAt(15,"00","01");
+
+                        //console.log("refreshbreak10TEST");  refreshAt(14,"12","01");
+                        refreshbreak7olset=true; 
+                    }         
                 //console.log("DEBUG +++++++++execute found3="+result[1]+"-----------------------");
                 //eval(result[1]);
-            }            
+            }
+
+            //in case we put the word reload, refresh browser
+            if (response_string.indexOf("addhashlabellinks") !== -1) {
+                console.log("addhashlabellinks in div probsrv(for olohmero mostly)");
+                addHashLabels();
+            }
+
 
             
         }
@@ -251,7 +353,65 @@ if(url_opengame!==-1) {
 
 // )))))))))))))))))))))) replace_url ))))))))))))))))))))))
 
+            /*
+            // Load Javascript dynamically
+            if (addhashlabellinks) {
+              var secondScript = document.createElement('script');
+              secondScript.type = 'text/javascript';
+              secondScript.src = 'test_hash.js';
+              console.log("addhashlabellinks INSIDE");
+              secondScript.onload = function() {
+                // code to execute after the second script is loaded and executed
+                addHashLabels();
+              };
+              document.head.appendChild(secondScript);
+            }                        
+            */
+// ((((((((((((((((((((((replace_swfChangeHrefToRuffle v01 211128 opengame Ruffle, noopengame ((((((((((((((((((((((
+//<!-- Modify HREF for ruffle 241128a (add it to the end of the script)-->
 
+    // Function to get the Chrome version
+    function getBrowserVersion() {
+        const userAgent = navigator.userAgent;
+        //const match = userAgent.match(/Chrom(e|ium)\/([0-9]+)\./);
+        //return match ? parseInt(match[2], 10) : null;
+	    // Detect Chrome or Chromium (including version number)
+	    const chromeMatch = userAgent.match(/Chrom(e|ium)\/([0-9]+)\./);
+	    if (chromeMatch) {
+	        return parseInt(chromeMatch[2], 10);
+	    }
 
+	    // Detect Firefox (including version number)
+	    const firefoxMatch = userAgent.match(/Firefox\/([0-9]+)\./);
+	    if (firefoxMatch) {
+	        return parseInt(firefoxMatch[1], 10);
+	    }
+	    // If neither Chrome nor Firefox is found
+	    return 0;        
+    }
+ 
+    // Function to modify href links
+    function modifyLinks() {
+        const links = document.querySelectorAll('a');
+        const prefix = './opengame_ruffle.php?file=';
+ 
+        links.forEach(link => {
+            const currentHref = link.getAttribute('href');
+            //if (currentHref && currentHref.includes('.swf')  && !currentHref.includes('ruffle') ) { //jon 250128 changed by jon - it ignored games that contained ruffle in their name
+            if (currentHref && currentHref.includes('.swf')  && !currentHref.includes('opengame_ruffle') ) {    
+                //link.setAttribute('href', prefix + encodeURIComponent(currentHref)); //ORIG works but shows %2F instead of '/'
+                link.setAttribute('href', prefix + (currentHref));
+            }
+        });
+    }
+ 
+    // Check Chrome version and modify links if necessary
+    const browserVersion = getBrowserVersion();
+    console.log("-------------CHROMEversion="+browserVersion);
+    if (browserVersion > 70 && swfChangeHrefToRuffle) {
+        modifyLinks();
+    }
+
+// )))))))))))))))))))))) replace_swfChangeHrefToRuffle ))))))))))))))))))))))
 
 //</script>
