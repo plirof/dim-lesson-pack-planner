@@ -39,7 +39,7 @@ server_eval_first_run=false; // PREVENT script running many times -only once
  <a href="http://192.168.1.200/swf/ramkid_selection_swf/ramkid169_editor.swf" target="sideframe1">ΓΡΑΨΤΕ ΚΕΙΜΕΝΟ<br>στην γαλάζια σελίδα ramkid169_editor</a>
 <a href="" target="sideframe1"> <hr></a>
 <a href="" target="sideframe1"> <hr></a> 
-
+<li><a href="/zx/zx_htm2tap/" target=_blank > BASIC EDITOR (hit F11 to see TABs if needed) </a>  <HR>
 
 
 -->

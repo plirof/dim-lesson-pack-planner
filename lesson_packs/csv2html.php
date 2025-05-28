@@ -1,6 +1,7 @@
 <?php
 /*
-250115 -v014c- $show_next_week_num
+-250525 -v014e- Show until the end or adjustWeekFinalNum_for_week 999 (after last week 23,24 )
+-250115 -v014c- $show_next_week_num
 //v014d 230124 fixed: Show previous and nect entries
 //v014c 230122 - Replacing $SERVER variable also
 //v014b - added remove_unwanted_lines() ,$ignore_bash_script_unwanted_lines=true
@@ -31,7 +32,7 @@ $delimiters = array('|_|'); // How each line is divided
 $count=0;
 
 $show_prev_week_num=2;
-$show_next_week_num=3;//up to how many next weeks should I show?
+$show_next_week_num=4;//up to how many next weeks should I show?
 
 $ignore_bash_script_unwanted_lines=true; // ignores lines starting with # (for .sh scripts)
 $weekofyear = date("W");
@@ -274,6 +275,8 @@ function replaceDelimiters($str,$prefixserverurl='http://192.168.1.200/')
 
 
 
+/*
+
 
 function get_string_between($string, $start, $end){
     global $weekofyear,$check_week;
@@ -285,6 +288,66 @@ function get_string_between($string, $start, $end){
     if ($ini == 0) return '';
     $ini += strlen($start);
     $len = strpos($string, $end, $ini) - $ini;
+    return substr($string, $ini, $len);
+}
+
+*/
+
+
+/*
+//shows all the rest of the entries if not found END week
+function get_string_between($string, $start, $end){
+    global $weekofyear, $check_week;
+
+    $string = ' ' . $string;
+
+    $ini = strpos($string, $start);
+    if ($ini === false) {
+        // Start not found
+        return '';
+    }
+    $ini += strlen($start);
+
+    // Attempt to find the $end
+    $pos_end = strpos($string, $end, $ini);
+
+    if ($pos_end === false) {
+        // $end not found; extract until the end of the string
+        return trim(substr($string, $ini));
+    } else {
+        // Extract between start and end
+        return trim(substr($string, $ini, $pos_end - $ini));
+    }
+}
+*/
+
+function get_string_between($string, $start, $end){
+    global $weekofyear, $check_week;
+
+    $string = ' ' . $string;
+
+    $ini = strpos($string, $start);
+    if ($ini === false) {
+        // Start not found
+        return '';
+    }
+    $ini += strlen($start);
+
+    // Attempt to find the $end
+    $pos_end = strpos($string, $end, $ini);
+
+    // If $end is not found, default to 'adjustWeekFinalNum_for_week 999'
+    if ($pos_end === false) {
+        $end = 'adjustWeekFinalNum_for_week 999';
+        $pos_end = strpos($string, $end, $ini);
+        if ($pos_end === false) {
+            // Still not found; return empty
+            return '';
+        }
+    }
+
+    $len = $pos_end - $ini;
+
     return substr($string, $ini, $len);
 }
 
